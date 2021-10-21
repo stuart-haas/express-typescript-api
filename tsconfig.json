@@ -10,8 +10,8 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "baseUrl": ".",
-    "outDir": "dist",
+    "baseUrl": "./src",
+    "outDir": "./dist",
     "paths": {
       "@root/*": ["/*"],
       "@start/*": ["start/*"],

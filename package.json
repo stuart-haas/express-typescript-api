@@ -6,7 +6,9 @@
   "scripts": {
     "up": "docker-compose up",
     "down": "docker-compose down",
-    "dev": "nodemon --watch '*.ts' --ext 'ts' --exec 'node' -r tsconfig-paths/register -r ts-node/register index.ts",
+    "dev": "nodemon --watch src --ext 'ts' --exec 'node' -r tsconfig-paths/register -r ts-node/register src/index.ts",
+    "build": "tsc --build",
+    "start": "node -r ts-node/register/transpile-only -r tsconfig-paths/register dist/index.js",
     "lint": "eslint . --ext .ts",
     "fix": "eslint . --fix --ext .ts",
     "precommit": "lint-staged"
