@@ -21,6 +21,7 @@
       "@boot/*": ["boot/*"],
       "@providers/*": ["app/providers/*"],
       "@entity/*": ["app/entity/*"],
+      "@decorators/*": ["app/decorators/*"],
       "@interfaces/*": ["app/interfaces/*"],
       "@components/*": ["app/components/*"], 
       "@services/*": ["app/services/*"],

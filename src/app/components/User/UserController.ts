@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { UserService } from './UserService';
 import { autoInjectable } from 'tsyringe';
-import { Controller } from '@app/decorators/Controller';
-import { Get, Post } from '@app/decorators/Route';
+import { Controller } from '@decorators/Controller';
+import { Get, Post } from '@decorators/Route';
 
 @autoInjectable()
 @Controller('/users')
