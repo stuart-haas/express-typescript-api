@@ -1,34 +1,19 @@
 import express from 'express';
-import helmet from 'helmet';
-import cors from 'cors';
+import { singleton } from 'tsyringe';
 
+@singleton()
 export default class App {
-  private app: express.Application;
+  public instance: express.Application;
 
   constructor() {
-    this.app = express();
-
-    this.applyMiddleware();
-    this.applyRoutes();
+    this.instance = express();
   }
 
   public start() {
-    this.app.listen(process.env.PORT, () => {
+    this.instance.listen(process.env.PORT, () => {
       console.log(
         `Application is up and running on port ${process.env.PORT}`
       );
     });
-  }
-
-  private applyMiddleware() {
-    this.app.use(helmet());
-    this.app.use(cors());
-    this.app.use(express.json());
-  }
-
-  private applyRoutes() {
-    this.app.get('/', (req, res) => {
-      res.send('Welcome to the API!');
-    })
   }
 }

@@ -11,4 +11,6 @@ COPY . .
 
 RUN yarn global add nodemon
 
+RUN yarn global add typeorm
+
 EXPOSE 5000
