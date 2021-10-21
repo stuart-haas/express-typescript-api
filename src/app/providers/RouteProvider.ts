@@ -1,9 +1,10 @@
 import App from 'boot/app';
 import { Request, Response } from 'express';
-import { container, autoInjectable } from 'tsyringe';
+import { container, autoInjectable, singleton } from 'tsyringe';
 import { RouteInterface } from '@app/interfaces/RouteInterface';
 import { ControllerProvider } from './ControllerProvider';
 
+@singleton()
 @autoInjectable()
 export class RouteProvider {
 

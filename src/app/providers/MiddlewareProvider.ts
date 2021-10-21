@@ -2,10 +2,11 @@ import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import App from 'boot/app';
-import { autoInjectable } from 'tsyringe';
+import { autoInjectable, singleton } from 'tsyringe';
 import dotenv from 'dotenv';
 
 dotenv.config();
+@singleton()
 @autoInjectable()
 export class MiddlewareProvider {
 

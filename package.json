@@ -9,6 +9,8 @@
     "dev": "nodemon --watch src --ext 'ts' --exec 'node' -r tsconfig-paths/register -r ts-node/register src/index.ts",
     "build": "tsc --build",
     "start": "ts-node src/index.ts",
+    "migration:run": "docker exec express_api ts-node --transpile-only ./node_modules/typeorm/cli.js migration:run",
+    "migration:revert": "docker exec express_api ts-node --transpile-only ./node_modules/typeorm/cli.js migration:revert",
     "lint": "eslint . --ext .ts",
     "fix": "eslint . --fix --ext .ts",
     "precommit": "lint-staged"
@@ -50,7 +52,7 @@
     "lint-staged": "10.5.4",
     "prettier": "2.3.2",
     "reflect-metadata": "^0.1.13",
-    "ts-node": "3.3.0",
+    "ts-node": "^10.3.1",
     "tsconfig-paths": "^3.9.0",
     "typescript": "3.3.3333"
   }

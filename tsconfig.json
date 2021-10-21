@@ -20,7 +20,7 @@
       "@app/*": ["app/*"],
       "@boot/*": ["boot/*"],
       "@providers/*": ["app/providers/*"],
-      "@models/*": ["app/models/*"],
+      "@entity/*": ["app/entity/*"],
       "@interfaces/*": ["app/interfaces/*"],
       "@components/*": ["app/components/*"], 
       "@services/*": ["app/services/*"],
