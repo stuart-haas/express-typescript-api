@@ -9,6 +9,3 @@
 3. After the containers have started open a new terminal and run `yarn migration:run` to run pending migrations
 
 4. Open up the browser and navigate to http://localhost:5000/api and you should see a text response that says 'Welcome to the API!'.
-
-
-
