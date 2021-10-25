@@ -6,6 +6,7 @@ import { autoInjectable, singleton } from 'tsyringe';
 import dotenv from 'dotenv';
 
 dotenv.config();
+
 @singleton()
 @autoInjectable()
 export class MiddlewareProvider {
