@@ -6,14 +6,16 @@ export const Middleware = (middleware: MiddlewareInterface | Array<MiddlewareInt
       Reflect.defineMetadata('middleware', [], target.constructor);
     }
 
-    let middlewares = Reflect.getMetadata('middleware', target.constructor) as Array<MiddlewareInterface>;
+    if(middleware) {
+      let middlewares = Reflect.getMetadata('middleware', target.constructor) as Array<MiddlewareInterface>;
 
-    if(Array.isArray(middleware)) {
-      middlewares = [...middleware];
-    } else {
-      middlewares.push(middleware);
+      if(Array.isArray(middleware)) {
+        middlewares = [...middleware];
+      } else {
+        middlewares.push(middleware);
+      }
+
+      Reflect.defineMetadata('middleware', middlewares, target.constructor);
     }
-
-    Reflect.defineMetadata('middleware', middlewares, target.constructor);
   }
 };

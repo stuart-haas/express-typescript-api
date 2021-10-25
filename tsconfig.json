@@ -19,6 +19,7 @@
       "@start/*": ["start/*"],
       "@app/*": ["app/*"],
       "@boot/*": ["boot/*"],
+      "@common/*": ["app/common/*"],
       "@providers/*": ["app/providers/*"],
       "@entity/*": ["app/entity/*"],
       "@decorators/*": ["app/decorators/*"],

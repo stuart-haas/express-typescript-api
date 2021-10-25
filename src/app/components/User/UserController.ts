@@ -1,13 +1,11 @@
 import { Request, Response } from 'express';
 import { UserService } from './UserService';
 import { autoInjectable } from 'tsyringe';
-import { Controller } from '@decorators/Controller';
-import { Get, Post } from '@decorators/Route';
-import { Middleware } from '@decorators/Middleware';
+import { Controller, Get, Post } from '@decorators/controller';
 import { Authentication } from '@middleware/Authentication';
 
 @autoInjectable()
-@Controller('/users')
+@Controller('/users', Authentication)
 export class UserController {
 
   constructor(private userService: UserService) {}
@@ -19,7 +17,6 @@ export class UserController {
   }
 
   @Get('/:id')
-  @Middleware(Authentication)
   public async show(req: Request, res: Response) {
     const { id } = req.params;
     const user = await this.userService.findById(+id);

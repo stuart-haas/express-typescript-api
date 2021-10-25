@@ -21,8 +21,8 @@ export class RouteProvider {
       const routes: Array<RouteInterface> = Reflect.getMetadata('routes', controller);
       const middleware: Array<MiddlewareInterface> = Reflect.getMetadata('middleware', controller) || ((req: Request, res: Response, next: NextFunction) => next());
       routes.forEach(route => {
-        this.app.instance[route.requestMethod](this.root + prefix + route.path, middleware, (req: Request, res: Response) => {
-          instance[route.methodName](req, res);
+        this.app.instance[route.requestMethod](this.root + prefix + route.path, middleware, (req: Request, res: Response, next: NextFunction) => {
+          instance[route.methodName](req, res, next);
         });
       });
     });

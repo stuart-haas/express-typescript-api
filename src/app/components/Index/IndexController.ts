@@ -1,8 +1,7 @@
 import { Request, Response } from 'express';
 import { IndexService } from './IndexService';
 import { autoInjectable } from 'tsyringe';
-import { Controller } from '@decorators/Controller';
-import { Get } from '@decorators/Route';
+import { Controller, Get } from '@decorators/controller';
 
 @autoInjectable()
 @Controller('/')
