@@ -3,13 +3,13 @@ import { NextFunction, Request, Response } from 'express';
 import { container, autoInjectable, singleton } from 'tsyringe';
 import { RouteInterface } from '@interfaces/RouteInterface';
 import { ControllerProvider } from './ControllerProvider';
-import { MiddlewareInterface } from '@app/interfaces/MiddlewareInterface';
+import { MiddlewareInterface } from '@interfaces/MiddlewareInterface';
 
 @singleton()
 @autoInjectable()
 export class RouteProvider {
 
-  private root = '/api';
+  private readonly root = '/api';
 
   constructor(
     private app: App, 

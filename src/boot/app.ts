@@ -3,6 +3,7 @@ import { singleton } from 'tsyringe';
 
 @singleton()
 export default class App {
+  
   public instance: express.Application;
 
   constructor() {

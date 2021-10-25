@@ -3,6 +3,8 @@ import { UserService } from './UserService';
 import { autoInjectable } from 'tsyringe';
 import { Controller } from '@decorators/Controller';
 import { Get, Post } from '@decorators/Route';
+import { Middleware } from '@decorators/Middleware';
+import { Authentication } from '@middleware/Authentication';
 
 @autoInjectable()
 @Controller('/users')
@@ -17,6 +19,7 @@ export class UserController {
   }
 
   @Get('/:id')
+  @Middleware(Authentication)
   public async show(req: Request, res: Response) {
     const { id } = req.params;
     const user = await this.userService.findById(+id);
