@@ -21,7 +21,7 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{ts}": [
+    "src/*.{ts}": [
       "yarn fix"
     ]
   },

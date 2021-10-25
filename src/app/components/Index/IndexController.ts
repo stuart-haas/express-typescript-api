@@ -1,4 +1,3 @@
-
 import { Request, Response } from 'express';
 import { IndexService } from './IndexService';
 import { autoInjectable } from 'tsyringe';
