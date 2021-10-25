@@ -1,4 +1,4 @@
-import {RouteInterface} from '@interfaces/RouteInterface';
+import { RouteInterface } from '@interfaces/RouteInterface';
 
 export const Route = (requestMethod: string) => (path: string): MethodDecorator => {
   return (target, propertyKey: string): void => {
@@ -13,6 +13,7 @@ export const Route = (requestMethod: string) => (path: string): MethodDecorator 
       path,
       methodName: propertyKey
     });
+
     Reflect.defineMetadata('routes', routes, target.constructor);
   };
 };

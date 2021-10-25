@@ -7,6 +7,10 @@ export class UserService {
     return await getManager().find(User);
   }
 
+  public async findById(id: number) {
+    return await getManager().findOne(User, id);
+  }
+
   public async create(payload: User) {
     const userRepository = getManager().getRepository(User);
     const user = userRepository.create(payload);

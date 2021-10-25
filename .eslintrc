@@ -11,6 +11,7 @@
   ],
   "rules": {
     "indent": ["warn", 2],
-    "quotes": [2, "single", { "avoidEscape": true }]
+    "quotes": [2, "single", { "avoidEscape": true }],
+    "object-curly-spacing": ["error", "always"]
   }
 }

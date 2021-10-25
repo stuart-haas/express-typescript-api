@@ -16,6 +16,13 @@ export class UserController {
     return res.json({ data: users });
   }
 
+  @Get('/:id')
+  public async show(req: Request, res: Response) {
+    const { id } = req.params;
+    const user = await this.userService.findById(+id);
+    return res.json({ data: user });
+  }
+
   @Post('/')
   public async create(req: Request, res: Response) {
     const { body } = req;
