@@ -20,8 +20,4 @@ export class ApiRouteProvider extends RouteProvider implements RouteProviderInte
   constructor(protected app: App) {
     super(app);
   }
-
-  boot(): void {
-    super.boot();
-  }
 }
