@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request } from 'express';
 import { UserService } from './UserService';
 import { autoInjectable } from 'tsyringe';
 import { Controller, Get, JsonResponse, Post } from '@decorators/controller';

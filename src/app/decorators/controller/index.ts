@@ -15,5 +15,5 @@ export {
   Delete,
   Options,
   JsonResponse,
-  TextResponse
+  TextResponse,
 }
