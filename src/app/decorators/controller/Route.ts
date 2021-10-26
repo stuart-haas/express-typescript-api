@@ -1,7 +1,7 @@
 import { RouteInterface } from '@interfaces/RouteInterface';
 
 export const Route = (requestMethod: string) => (path: string): MethodDecorator => {
-  return (target, propertyKey: string): void => {
+  return (target: any, propertyKey: string, descriptor: PropertyDescriptor): PropertyDescriptor | void => {
     if (!Reflect.hasMetadata('routes', target.constructor)) {
       Reflect.defineMetadata('routes', [], target.constructor);
     }
@@ -15,6 +15,8 @@ export const Route = (requestMethod: string) => (path: string): MethodDecorator 
     });
 
     Reflect.defineMetadata('routes', routes, target.constructor);
+
+    return descriptor;
   };
 };
 

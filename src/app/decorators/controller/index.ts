@@ -1,10 +1,12 @@
 import { Controller } from './Controller';
-import { Middleware } from './Middleware';
+import { ControllerMiddleware, RouteMiddleware } from './Middleware';
 import { Route, Get, Post, Put, Patch, Delete, Options } from './Route';
+import { JsonResponse, TextResponse } from './Response';
 
 export { 
   Controller,
-  Middleware,
+  ControllerMiddleware,
+  RouteMiddleware,
   Route,
   Get,
   Post,
@@ -12,4 +14,6 @@ export {
   Patch,
   Delete,
   Options,
+  JsonResponse,
+  TextResponse
 }

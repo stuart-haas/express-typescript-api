@@ -1,32 +1,34 @@
 import { Request, Response } from 'express';
 import { UserService } from './UserService';
 import { autoInjectable } from 'tsyringe';
-import { Controller, Get, Post } from '@decorators/controller';
-import { Authentication } from '@middleware/Authentication';
+import { Controller, Get, JsonResponse, Post } from '@decorators/controller';
+import { RequireAuthentication, RequireAuthorization } from '@middleware/Authentication';
 
 @autoInjectable()
-@Controller('/users', Authentication)
+@Controller({ prefix: '/users' })
+@RequireAuthentication()
 export class UserController {
 
   constructor(private userService: UserService) {}
 
   @Get('/')
-  public async index(req: Request, res: Response) {
-    const users = await this.userService.findAll();
-    return res.json({ data: users });
+  @RequireAuthorization('admin')
+  @JsonResponse()
+  public async index() {
+    return await this.userService.findAll();
   }
 
   @Get('/:id')
-  public async show(req: Request, res: Response) {
+  @JsonResponse()
+  public async show(req: Request) {
     const { id } = req.params;
-    const user = await this.userService.findById(+id);
-    return res.json({ data: user });
+    return await this.userService.findById(+id);
   }
 
   @Post('/')
-  public async create(req: Request, res: Response) {
+  @JsonResponse()
+  public async create(req: Request) {
     const { body } = req;
-    const user = await this.userService.create(body);
-    return res.json({ data: user });
+    return await this.userService.create(body);
   }
 }
