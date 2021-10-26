@@ -1,7 +1,7 @@
 import App from 'boot/app';
 import { autoInjectable, InjectionToken, singleton } from 'tsyringe';
 import { RouteProviderInterface } from '@interfaces/RouteProviderInterface';
-import { RouteProvider } from '@app/common/RouteProvider';
+import { RouteProvider } from '@common/RouteProvider';
 import { UserController } from '@components/User/UserController';
 import { IndexController } from '@components/Index/IndexController';
 import { BaseControllerInterface } from '@interfaces/BaseControllerInterface';

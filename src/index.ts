@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { container } from 'tsyringe';
-import { Container } from '@boot/container';
-import { BaseContainer } from '@app/common/BaseContainer';
+import { AppContainer } from '@boot/container';
+import { Container } from '@common/Container';
 
-const app = container.resolve(Container) as BaseContainer;
+const app = container.resolve(AppContainer) as Container;
 app.boot();
