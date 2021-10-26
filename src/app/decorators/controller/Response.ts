@@ -9,7 +9,7 @@ export const defineJsonResponse = (wrapper: string, descriptor: PropertyDescript
   return descriptor;
 }
 
-export const defineTextResponse = (wrapper: string, descriptor: PropertyDescriptor): PropertyDescriptor => {
+export const defineTextResponse = (descriptor: PropertyDescriptor): PropertyDescriptor => {
   const originalMethod = descriptor.value;
 
   descriptor.value = async function (...args: any[]) {
@@ -26,8 +26,8 @@ export const JsonResponse = (wrapper = 'data'): MethodDecorator => {
   };
 };
 
-export const TextResponse = (wrapper = 'data'): MethodDecorator => {
+export const TextResponse = (): MethodDecorator => {
   return (target, propertyKey: string, descriptor: PropertyDescriptor): PropertyDescriptor => {
-    return defineTextResponse(wrapper, descriptor);
+    return defineTextResponse(descriptor);
   };
 };

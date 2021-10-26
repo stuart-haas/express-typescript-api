@@ -1,21 +1,21 @@
 import App from 'boot/app';
 import { NextFunction, Request, Response } from 'express';
-import { container, autoInjectable, singleton } from 'tsyringe';
+import { container, InjectionToken } from 'tsyringe';
 import { RouteInterface } from '@interfaces/RouteInterface';
-import { ControllerProvider } from './ControllerProvider';
 import { MiddlewareInterface } from '@interfaces/MiddlewareInterface';
+import { RouteProviderInterface } from '@interfaces/RouteProviderInterface';
+import { BaseControllerInterface } from '@interfaces/BaseControllerInterface';
 
-@singleton()
-@autoInjectable()
-export class RouteProvider {
+export abstract class RouteProvider implements RouteProviderInterface {
 
-  private readonly root = '/api';
+  constructor(protected app: App) {}
 
-  constructor(
-    private app: App, 
-    private controllerProvider: ControllerProvider
-  ) {
-    this.controllerProvider.controllers.forEach(controller => {
+  root: string;
+
+  controllers: InjectionToken<BaseControllerInterface>[];
+
+  boot(): void {
+    this.controllers.forEach(controller => {
       const instance = container.resolve(controller);
       const prefix = Reflect.getMetadata('prefix', controller);
       const routes: Array<RouteInterface> = Reflect.getMetadata('routes', controller);
