@@ -17,7 +17,7 @@ services:
     environment:
       NODE_ENV: development
       HOST: 0.0.0.0
-    entrypoint: yarn dev
+    command: yarn dev
   db:
     container_name: express_db
     image: postgres:12

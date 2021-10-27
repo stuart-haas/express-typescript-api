@@ -1,4 +1,4 @@
-import { ControllerInterface } from '@interfaces/ControllerInterface';
+import { ControllerInterface } from 'interfaces/ControllerInterface';
 import { defineMiddleware } from './Middleware';
 
 export const Controller = (controller: ControllerInterface): ClassDecorator => {

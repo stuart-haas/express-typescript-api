@@ -4,7 +4,7 @@ import cors from 'cors';
 import App from 'boot/app';
 import { autoInjectable, singleton } from 'tsyringe';
 import dotenv from 'dotenv';
-import { ProviderInterface } from '@interfaces/ProviderInterface';
+import { ProviderInterface } from 'interfaces/ProviderInterface';
 
 dotenv.config();
 

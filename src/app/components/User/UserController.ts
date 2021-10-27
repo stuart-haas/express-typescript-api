@@ -1,9 +1,9 @@
 import { Request } from 'express';
 import { UserService } from './UserService';
 import { autoInjectable } from 'tsyringe';
-import { Controller, Get, JsonResponse, Post } from '@decorators/controller';
-import { RequireAuthentication, RequireAuthorization } from '@middleware/Authentication';
-import { BaseControllerInterface } from '@interfaces/BaseControllerInterface';
+import { Controller, Get, JsonResponse, Post } from 'decorators/controller';
+import { RequireAuthentication, RequireAuthorization } from 'middleware/Authentication';
+import { BaseControllerInterface } from 'interfaces/BaseControllerInterface';
 
 @autoInjectable()
 @Controller({ prefix: '/users' })

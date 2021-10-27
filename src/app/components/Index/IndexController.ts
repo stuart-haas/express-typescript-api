@@ -1,7 +1,7 @@
 import { IndexService } from './IndexService';
 import { autoInjectable } from 'tsyringe';
-import { Controller, Get, TextResponse } from '@decorators/controller';
-import { BaseControllerInterface } from '@interfaces/BaseControllerInterface';
+import { Controller, Get, TextResponse } from 'decorators/controller';
+import { BaseControllerInterface } from 'interfaces/BaseControllerInterface';
 
 @autoInjectable()
 @Controller({ prefix: '/' })

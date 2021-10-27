@@ -1,10 +1,10 @@
 import App from 'boot/app';
 import { NextFunction, Request, Response } from 'express';
 import { container, InjectionToken } from 'tsyringe';
-import { RouteInterface } from '@interfaces/RouteInterface';
-import { MiddlewareInterface } from '@interfaces/MiddlewareInterface';
-import { RouteProviderInterface } from '@interfaces/RouteProviderInterface';
-import { BaseControllerInterface } from '@interfaces/BaseControllerInterface';
+import { RouteInterface } from 'interfaces/RouteInterface';
+import { MiddlewareInterface } from 'interfaces/MiddlewareInterface';
+import { RouteProviderInterface } from 'interfaces/RouteProviderInterface';
+import { BaseControllerInterface } from 'interfaces/BaseControllerInterface';
 
 export abstract class RouteProvider implements RouteProviderInterface {
 

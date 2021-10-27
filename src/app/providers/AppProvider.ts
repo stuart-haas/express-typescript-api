@@ -1,5 +1,5 @@
-import { ProviderInterface } from '@interfaces/ProviderInterface';
-import App from '@boot/app';
+import { ProviderInterface } from 'interfaces/ProviderInterface';
+import App from 'boot/app';
 import { autoInjectable, singleton } from 'tsyringe';
 import { createConnection } from 'typeorm';
 

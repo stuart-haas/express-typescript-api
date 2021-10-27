@@ -1,4 +1,4 @@
-import { RouteInterface } from '@interfaces/RouteInterface';
+import { RouteInterface } from 'interfaces/RouteInterface';
 
 export const Route = (requestMethod: string) => (path: string): MethodDecorator => {
   return (target, propertyKey: string, descriptor: PropertyDescriptor): PropertyDescriptor | void => {

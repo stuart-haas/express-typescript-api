@@ -1,4 +1,4 @@
-import { User } from '@entity/User';
+import { User } from 'entity/User';
 import { getManager } from 'typeorm';
 
 export class UserService {

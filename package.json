@@ -6,9 +6,9 @@
   "scripts": {
     "up": "docker-compose up",
     "down": "docker-compose down",
-    "dev": "nodemon --watch src --ext 'ts' --exec 'node' -r tsconfig-paths/register -r ts-node/register src/index.ts",
+    "dev": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' -r tsconfig-paths/register src/index.ts",
     "build": "tsc --build",
-    "start": "ts-node src/index.ts",
+    "start": "node -r ts-node/register/transpile-only -r tsconfig-paths/register dist/index.js",
     "migration:run": "docker exec express_api ts-node --transpile-only ./node_modules/typeorm/cli.js migration:run",
     "migration:revert": "docker exec express_api ts-node --transpile-only ./node_modules/typeorm/cli.js migration:revert",
     "lint": "eslint . --ext .ts",

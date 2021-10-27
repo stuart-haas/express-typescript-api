@@ -1,6 +1,6 @@
 import { container, InjectionToken } from 'tsyringe';
-import { ProviderInterface } from '@interfaces/ProviderInterface';
-import { ContainerInterface } from '@interfaces/ContainerInterface';
+import { ProviderInterface } from 'interfaces/ProviderInterface';
+import { ContainerInterface } from 'interfaces/ContainerInterface';
 
 export abstract class Container implements ContainerInterface {
 
