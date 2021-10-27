@@ -1,4 +1,4 @@
-import App from 'boot/app';
+import { App } from 'boot/app';
 import { NextFunction, Request, Response } from 'express';
 import { container, InjectionToken } from 'tsyringe';
 import { RouteInterface } from 'interfaces/RouteInterface';

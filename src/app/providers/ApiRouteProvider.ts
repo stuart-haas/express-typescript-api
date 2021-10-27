@@ -1,4 +1,4 @@
-import App from 'boot/app';
+import { App } from 'boot/app';
 import { autoInjectable, InjectionToken, singleton } from 'tsyringe';
 import { RouteProviderInterface } from 'interfaces/RouteProviderInterface';
 import { RouteProvider } from 'common/RouteProvider';

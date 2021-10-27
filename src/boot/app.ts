@@ -2,7 +2,7 @@ import express from 'express';
 import { singleton } from 'tsyringe';
 
 @singleton()
-export default class App {
+export class App {
   
   public instance: express.Application;
 

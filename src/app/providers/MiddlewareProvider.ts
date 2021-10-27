@@ -1,7 +1,7 @@
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
-import App from 'boot/app';
+import { App } from 'boot/app';
 import { autoInjectable, singleton } from 'tsyringe';
 import dotenv from 'dotenv';
 import { ProviderInterface } from 'interfaces/ProviderInterface';
