@@ -3,7 +3,11 @@ export const defineJsonResponse = (wrapper: string, descriptor: PropertyDescript
 
   descriptor.value = async function (...args: any[]) {
     const result = await originalMethod.apply(this, args);
-    return args[1].json({ [wrapper]: result });
+    return args.find((e) => {
+      if(e.json) {
+        return e.json({ [wrapper]: result });
+      }
+    });
   }
 
   return descriptor;
@@ -14,7 +18,11 @@ export const defineTextResponse = (descriptor: PropertyDescriptor): PropertyDesc
 
   descriptor.value = async function (...args: any[]) {
     const result = await originalMethod.apply(this, args);
-    return args[1].send(result);
+    return args.find((e) => {
+      if(e.send) {
+        return e.send(result);
+      }
+    });
   }
 
   return descriptor;
