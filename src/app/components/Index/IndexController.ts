@@ -1,11 +1,11 @@
 import { IndexService } from './IndexService';
 import { autoInjectable } from 'tsyringe';
 import { Controller, Get, TextResponse } from 'decorators/controller';
-import { BaseControllerInterface } from 'interfaces/BaseControllerInterface';
+import { ControllerInterface } from 'interfaces/ControllerInterface';
 
 @autoInjectable()
-@Controller({ prefix: '/' })
-export class IndexController implements BaseControllerInterface {
+@Controller('/')
+export class IndexController implements ControllerInterface {
 
   constructor(private indexService: IndexService) {}
 

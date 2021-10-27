@@ -1,14 +1,9 @@
-import { ControllerInterface } from 'interfaces/ControllerInterface';
-import { defineMiddleware } from './Middleware';
-
-export const Controller = (controller: ControllerInterface): ClassDecorator => {
+export const Controller = (prefix: string): ClassDecorator => {
   return (target): void => {
-    Reflect.defineMetadata('prefix', controller.prefix, target);
+    Reflect.defineMetadata('prefix', prefix, target);
 
     if (!Reflect.hasMetadata('routes', target)) {
       Reflect.defineMetadata('routes', [], target);
     }
-
-    defineMiddleware(target, controller.middleware);
   };
 };

@@ -4,7 +4,7 @@ import { RouteProviderInterface } from 'interfaces/RouteProviderInterface';
 import { RouteProvider } from 'common/RouteProvider';
 import { UserController } from 'components/User/UserController';
 import { IndexController } from 'components/Index/IndexController';
-import { BaseControllerInterface } from 'interfaces/BaseControllerInterface';
+import { ControllerInterface } from 'interfaces/ControllerInterface';
 
 @singleton()
 @autoInjectable()
@@ -12,7 +12,7 @@ export class ApiRouteProvider extends RouteProvider implements RouteProviderInte
 
   root = '/api';
 
-  controllers: InjectionToken<BaseControllerInterface>[] = [
+  controllers: InjectionToken<ControllerInterface>[] = [
     IndexController,
     UserController
   ]

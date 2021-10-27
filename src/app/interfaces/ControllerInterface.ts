@@ -1,6 +1,2 @@
-import { MiddlewareInterface } from './MiddlewareInterface';
-
-export interface ControllerInterface {
-  prefix?: string;
-  middleware?: MiddlewareInterface | Array<MiddlewareInterface>
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ControllerInterface {}

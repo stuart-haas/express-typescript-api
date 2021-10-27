@@ -3,12 +3,12 @@ import { UserService } from './UserService';
 import { autoInjectable } from 'tsyringe';
 import { Controller, Get, JsonResponse, Post } from 'decorators/controller';
 import { RequireAuthentication, RequireAuthorization } from 'middleware/Authentication';
-import { BaseControllerInterface } from 'interfaces/BaseControllerInterface';
+import { ControllerInterface } from 'interfaces/ControllerInterface';
 
 @autoInjectable()
-@Controller({ prefix: '/users' })
+@Controller('/users')
 @RequireAuthentication()
-export class UserController implements BaseControllerInterface {
+export class UserController implements ControllerInterface {
 
   constructor(private userService: UserService) {}
 

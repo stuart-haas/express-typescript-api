@@ -1,8 +1,8 @@
 import { InjectionToken } from 'tsyringe';
-import { BaseControllerInterface } from './BaseControllerInterface';
+import { ControllerInterface } from './ControllerInterface';
 import { ProviderInterface } from './ProviderInterface';
 
 export interface RouteProviderInterface extends ProviderInterface {
   readonly root: string;
-  readonly controllers: InjectionToken<BaseControllerInterface>[];
+  readonly controllers: InjectionToken<ControllerInterface>[];
 }

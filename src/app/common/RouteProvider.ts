@@ -4,7 +4,7 @@ import { container, InjectionToken } from 'tsyringe';
 import { RouteInterface } from 'interfaces/RouteInterface';
 import { MiddlewareInterface } from 'interfaces/MiddlewareInterface';
 import { RouteProviderInterface } from 'interfaces/RouteProviderInterface';
-import { BaseControllerInterface } from 'interfaces/BaseControllerInterface';
+import { ControllerInterface } from 'interfaces/ControllerInterface';
 
 export abstract class RouteProvider implements RouteProviderInterface {
 
@@ -12,7 +12,7 @@ export abstract class RouteProvider implements RouteProviderInterface {
 
   root: string;
 
-  controllers: InjectionToken<BaseControllerInterface>[];
+  controllers: InjectionToken<ControllerInterface>[];
 
   boot(): void {
     this.controllers.forEach(controller => {
