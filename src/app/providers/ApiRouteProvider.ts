@@ -15,7 +15,7 @@ export class ApiRouteProvider extends RouteProvider implements RouteProviderInte
   controllers: InjectionToken<ControllerInterface>[] = [
     IndexController,
     UserController
-  ]
+  ];
 
   constructor(protected server: Server) {
     super(server);
