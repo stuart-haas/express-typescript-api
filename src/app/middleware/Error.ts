@@ -16,4 +16,4 @@ export const Error = (error: any, req: Request, res: Response, next: NextFunctio
     });
   }
   return next();
-}
+};

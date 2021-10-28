@@ -8,10 +8,10 @@ export const defineBody = (target, propertyKey: string, req: Request, newArgs: a
       newArgs.splice(parameterIndex, 0, req.body);
     }
   }
-}
+};
 
 export const Body = (): ParameterDecorator => {
   return (target, propertyKey: string, parameterIndex: number) => {
     Reflect.defineMetadata('body', { parameterIndex }, target.constructor, propertyKey);
-  }
-}
+  };
+};

@@ -10,6 +10,6 @@ export abstract class Container implements ContainerInterface {
     this.providers.forEach(provider => {
       const instance = container.resolve(provider) as ProviderInterface;
       instance.boot();
-    })
+    });
   }
 }

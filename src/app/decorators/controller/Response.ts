@@ -10,10 +10,10 @@ export const defineJsonResponse = (wrapper: string, descriptor: PropertyDescript
     } catch(error) {
       return next(error);
     }
-  }
+  };
 
   return descriptor;
-}
+};
 
 export const defineTextResponse = (descriptor: PropertyDescriptor): PropertyDescriptor => {
   const originalMethod = descriptor.value;
@@ -27,10 +27,10 @@ export const defineTextResponse = (descriptor: PropertyDescriptor): PropertyDesc
     } catch(error) {
       return next(error);
     }
-  }
+  };
 
   return descriptor;
-}
+};
 
 export const JsonResponse = (wrapper = 'data'): MethodDecorator => {
   return (target, propertyKey: string, descriptor: PropertyDescriptor): PropertyDescriptor => {

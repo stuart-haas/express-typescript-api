@@ -30,7 +30,7 @@ export const Route = (requestMethod: string) => (path: string): MethodDecorator 
       defineBody(target, propertyKey, req, newArgs);
 
       return await originalMethod.apply(this, newArgs);
-    }
+    };
 
     return descriptor;
   };

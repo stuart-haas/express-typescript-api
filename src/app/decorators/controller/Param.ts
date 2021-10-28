@@ -8,10 +8,10 @@ export const defineParam = (target, propertyKey: string, req: Request, newArgs: 
       newArgs.splice(parameterIndex, 0, req.params[key]);
     }
   }      
-}
+};
 
 export const Param = (key: string): ParameterDecorator => {
   return (target, propertyKey: string, parameterIndex: number) => {
     Reflect.defineMetadata('param', { key, parameterIndex }, target.constructor, propertyKey);
-  }
-}
+  };
+};

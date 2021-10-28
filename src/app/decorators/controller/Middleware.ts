@@ -16,16 +16,16 @@ export const defineMiddleware = (target, middleware: MiddlewareInterface | Array
 
     Reflect.defineMetadata('middleware', middlewares, target);
   }
-}
+};
 
 export const ControllerMiddleware = (middleware: MiddlewareInterface | Array<MiddlewareInterface>): ClassDecorator => {
   return (target): void => {
     defineMiddleware(target, middleware);
-  }
+  };
 };
 
 export const RouteMiddleware = (middleware: MiddlewareInterface | Array<MiddlewareInterface>): MethodDecorator => {
   return (target): void => {
     defineMiddleware(target.constructor, middleware);
-  }
+  };
 };
