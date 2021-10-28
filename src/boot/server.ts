@@ -11,7 +11,7 @@ export class Server implements ServerInterface {
     this.app = express();
   }
 
-  public start(): void {
+  start(): void {
     this.app.listen(process.env.PORT, () => {
       console.log(
         `Application is up and running on port ${process.env.PORT}`

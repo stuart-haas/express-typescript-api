@@ -6,7 +6,7 @@ export abstract class Container implements ContainerInterface {
 
   providers: InjectionToken<ProviderInterface>[];
 
-  public boot() {
+  boot(): void {
     this.providers.forEach(provider => {
       const instance = container.resolve(provider) as ProviderInterface;
       instance.boot();
