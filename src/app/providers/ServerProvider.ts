@@ -11,7 +11,7 @@ export class ServerProvider implements ProviderInterface {
 
   boot(): void {
     createConnection()
-      .then(async () => {
+      .then(() => {
         this.server.start();
       })
       .catch(error => console.log(error));
