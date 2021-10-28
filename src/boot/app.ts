@@ -4,11 +4,11 @@ import { ApiRouteProvider } from 'providers/ApiRouteProvider';
 import { ServerProvider } from 'providers/ServerProvider';
 import { ProviderInterface } from 'interfaces/ProviderInterface';
 import { ContainerInterface } from 'interfaces/ContainerInterface';
-import { Container as BaseContainer } from 'common/Container';
+import { Container } from 'common/Container';
 import { ErrorProvider } from 'app/providers/ErrorProvider';
 
 @singleton()
-export class Container extends BaseContainer implements ContainerInterface {
+export class App extends Container implements ContainerInterface {
 
   providers: InjectionToken<ProviderInterface>[] = [
     MiddlewareProvider,
