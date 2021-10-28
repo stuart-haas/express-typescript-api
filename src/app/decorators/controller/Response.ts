@@ -2,12 +2,21 @@ export const defineJsonResponse = (wrapper: string, descriptor: PropertyDescript
   const originalMethod = descriptor.value;
 
   descriptor.value = async function (...args: any[]) {
-    const result = await originalMethod.apply(this, args);
-    return args.find((e) => {
-      if(e.json) {
-        return e.json({ [wrapper]: result });
+    const next = args.find((e) => {
+      if(typeof e === 'function') {
+        return e;
       }
     });
+    try {
+      const result = await originalMethod.apply(this, args);
+      return args.find((e) => {
+        if(e.json) {
+          return e.json({ [wrapper]: result });
+        }
+      });
+    } catch(error) {
+      return next(error);
+    }
   }
 
   return descriptor;

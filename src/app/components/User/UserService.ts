@@ -23,4 +23,10 @@ export class UserService {
     userRepository.merge(user, payload);
     return await userRepository.save(user);
   }
+
+  public async destroy(id: number) {
+    const userRepository = getManager().getRepository(User);
+    const user = await userRepository.findOne(id);
+    return await userRepository.delete(user);
+  }
 }
