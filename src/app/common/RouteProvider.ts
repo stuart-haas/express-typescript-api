@@ -6,10 +6,6 @@ import { MiddlewareInterface } from 'interfaces/MiddlewareInterface';
 import { RouteProviderInterface } from 'interfaces/RouteProviderInterface';
 import { ControllerInterface } from 'interfaces/ControllerInterface';
 
-const asyncRequest = (fn) => function (req, res, next) {
-  fn(req, res, next).catch(next);
-};
-
 export abstract class RouteProvider implements RouteProviderInterface {
 
   constructor(protected server: Server) {}
@@ -26,7 +22,7 @@ export abstract class RouteProvider implements RouteProviderInterface {
       const middleware: Array<MiddlewareInterface> = Reflect.getMetadata('middleware', controller) || ((req: Request, res: Response, next: NextFunction) => next());
       routes.forEach(route => {
         this.server.app[route.requestMethod](this.root + prefix + route.path, middleware, (req: Request, res: Response, next: NextFunction) => {
-          asyncRequest(instance[route.methodName](req, res, next));
+          instance[route.methodName](req, res, next);
         });
       });
     });
