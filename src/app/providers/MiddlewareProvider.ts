@@ -1,7 +1,7 @@
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
-import { App } from 'boot/app';
+import { Server } from 'boot/server';
 import { autoInjectable, singleton } from 'tsyringe';
 import dotenv from 'dotenv';
 import { ProviderInterface } from 'interfaces/ProviderInterface';
@@ -12,11 +12,11 @@ dotenv.config();
 @autoInjectable()
 export class MiddlewareProvider implements ProviderInterface {
 
-  constructor(private app: App) {}
+  constructor(private server: Server) {}
 
   boot(): void {
-    this.app.instance.use(helmet());
-    this.app.instance.use(cors());
-    this.app.instance.use(express.json());
+    this.server.app.use(helmet());
+    this.server.app.use(cors());
+    this.server.app.use(express.json());
   }
 }

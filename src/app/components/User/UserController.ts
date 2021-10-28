@@ -1,9 +1,10 @@
 import { Request } from 'express';
 import { UserService } from './UserService';
 import { autoInjectable } from 'tsyringe';
-import { Controller, Get, JsonResponse, Post } from 'decorators/controller';
+import { Controller, Get, JsonResponse, Post, Body, Param, Put } from 'decorators/controller';
 import { RequireAuthentication, RequireAuthorization } from 'middleware/Authentication';
 import { ControllerInterface } from 'interfaces/ControllerInterface';
+import { User } from 'app/entity/User';
 
 @autoInjectable()
 @Controller('/users')
@@ -21,15 +22,19 @@ export class UserController implements ControllerInterface {
 
   @Get('/:id')
   @JsonResponse()
-  public async show(req: Request) {
-    const { id } = req.params;
-    return await this.userService.findById(+id);
+  public async show(@Param('id') id: number) {
+    return await this.userService.findById(id);
   }
 
   @Post('/')
   @JsonResponse()
-  public async create(req: Request) {
-    const { body } = req;
-    return await this.userService.create(body);
+  public async create(@Body() user: User) {
+    return await this.userService.create(user);
+  }
+
+  @Put('/:id')
+  @JsonResponse()
+  public async update(@Param('id') id: number, @Body() user: User) {
+    return await this.userService.update(id, user);
   }
 }

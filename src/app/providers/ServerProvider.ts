@@ -1,18 +1,18 @@
 import { ProviderInterface } from 'interfaces/ProviderInterface';
-import { App } from 'boot/app';
+import { Server } from 'boot/server';
 import { autoInjectable, singleton } from 'tsyringe';
 import { createConnection } from 'typeorm';
 
 @singleton()
 @autoInjectable()
-export class AppProvider implements ProviderInterface {
+export class ServerProvider implements ProviderInterface {
 
-  constructor(private app: App) {}
+  constructor(private server: Server) {}
 
   boot(): void {
     createConnection()
       .then(async () => {
-        this.app.start();
+        this.server.start();
       })
       .catch(error => console.log(error));
   }

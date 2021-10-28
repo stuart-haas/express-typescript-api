@@ -1,4 +1,6 @@
 import { RouteInterface } from 'interfaces/RouteInterface';
+import { defineBody } from './Body';
+import { defineParam } from './Param';
 
 export const Route = (requestMethod: string) => (path: string): MethodDecorator => {
   return (target, propertyKey: string, descriptor: PropertyDescriptor): PropertyDescriptor | void => {
@@ -15,6 +17,20 @@ export const Route = (requestMethod: string) => (path: string): MethodDecorator 
     });
 
     Reflect.defineMetadata('routes', routes, target.constructor);
+
+    const originalMethod = descriptor.value;
+
+    descriptor.value = async function (...args: any[]) {
+      const req = args[0];
+
+      const newArgs = [...args];
+
+      defineParam(target, propertyKey, req, newArgs);
+
+      defineBody(target, propertyKey, req, newArgs);
+
+      return await originalMethod.apply(this, newArgs);
+    }
 
     return descriptor;
   };

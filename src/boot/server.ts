@@ -2,16 +2,16 @@ import express from 'express';
 import { singleton } from 'tsyringe';
 
 @singleton()
-export class App {
+export class Server {
   
-  public instance: express.Application;
+  public app: express.Application;
 
   constructor() {
-    this.instance = express();
+    this.app = express();
   }
 
   public start() {
-    this.instance.listen(process.env.PORT, () => {
+    this.app.listen(process.env.PORT, () => {
       console.log(
         `Application is up and running on port ${process.env.PORT}`
       );

@@ -1,4 +1,4 @@
-import { App } from 'boot/app';
+import { Server } from 'boot/server';
 import { autoInjectable, InjectionToken, singleton } from 'tsyringe';
 import { RouteProviderInterface } from 'interfaces/RouteProviderInterface';
 import { RouteProvider } from 'common/RouteProvider';
@@ -17,7 +17,7 @@ export class ApiRouteProvider extends RouteProvider implements RouteProviderInte
     UserController
   ]
 
-  constructor(protected app: App) {
-    super(app);
+  constructor(protected server: Server) {
+    super(server);
   }
 }

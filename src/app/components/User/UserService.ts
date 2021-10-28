@@ -16,4 +16,11 @@ export class UserService {
     const user = userRepository.create(payload);
     return await userRepository.save(user);
   }
+
+  public async update(id: number, payload: User) {
+    const userRepository = getManager().getRepository(User);
+    const user = await userRepository.findOne(id);
+    userRepository.merge(user, payload);
+    return await userRepository.save(user);
+  }
 }
