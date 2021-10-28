@@ -1,19 +1,21 @@
-import { InjectionToken, singleton } from 'tsyringe';
-import { MiddlewareProvider } from 'providers/MiddlewareProvider';
-import { ApiRouteProvider } from 'providers/ApiRouteProvider';
-import { ServerProvider } from 'providers/ServerProvider';
-import { ProviderInterface } from 'interfaces/ProviderInterface';
-import { ContainerInterface } from 'interfaces/ContainerInterface';
-import { Container } from 'common/Container';
-import { ErrorProvider } from 'app/providers/ErrorProvider';
+import { AppInterface } from 'app/interfaces/AppInterface';
+import express from 'express';
+import { singleton } from 'tsyringe';
 
 @singleton()
-export class App extends Container implements ContainerInterface {
+export class App implements AppInterface {
+  
+  server: express.Application;
 
-  providers: InjectionToken<ProviderInterface>[] = [
-    MiddlewareProvider,
-    ApiRouteProvider,
-    ErrorProvider,
-    ServerProvider,
-  ];
+  constructor() {
+    this.server = express();
+  }
+
+  start(): void {
+    this.server.listen(process.env.PORT, () => {
+      console.log(
+        `Application is up and running on port ${process.env.PORT}`
+      );
+    });
+  }
 }

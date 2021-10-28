@@ -1,4 +1,4 @@
-import { Server } from 'boot/server';
+import { App } from 'boot/app';
 import { autoInjectable, singleton } from 'tsyringe';
 import { ProviderInterface } from 'interfaces/ProviderInterface';
 import { Error } from 'app/middleware/Error';
@@ -7,9 +7,9 @@ import { Error } from 'app/middleware/Error';
 @autoInjectable()
 export class ErrorProvider implements ProviderInterface {
 
-  constructor(private server: Server) {}
+  constructor(private app: App) {}
 
   boot(): void {
-    this.server.app.use(Error);    
+    this.app.server.use(Error);
   }
 }

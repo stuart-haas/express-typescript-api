@@ -1,6 +1,6 @@
 import { Application } from 'express';
 
-export interface ServerInterface {
-  app: Application;
+export interface AppInterface {
+  server: Application;
   start(): void;
 }
