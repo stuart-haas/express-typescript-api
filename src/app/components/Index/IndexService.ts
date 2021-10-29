@@ -1,6 +1,6 @@
 export class IndexService {
 
-  public async get() {
+  public async hello() {
     return 'Hello World!';
   }
 }

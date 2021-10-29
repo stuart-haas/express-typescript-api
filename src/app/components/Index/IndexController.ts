@@ -11,7 +11,7 @@ export class IndexController implements ControllerInterface {
 
   @Get('')
   @TextResponse()
-  public async get() {
-    return await this.indexService.get();
+  public async hello() {
+    return await this.indexService.hello();
   }
 }

@@ -15,13 +15,13 @@ export class UserController implements ControllerInterface {
   @Get('/')
   @RequireAuthorization('admin')
   @JsonResponse()
-  public async index() {
+  public async findAll() {
     return await this.userService.findAll();
   }
 
   @Get('/:id')
   @JsonResponse()
-  public async show(@Param('id') id: number) {
+  public async findById(@Param('id') id: number) {
     return await this.userService.findById(id);
   }
 
@@ -33,13 +33,13 @@ export class UserController implements ControllerInterface {
 
   @Put('/:id')
   @JsonResponse()
-  public async update(@Param('id') id: number, @Body() user: User) {
-    return await this.userService.update(id, user);
+  public async updateById(@Param('id') id: number, @Body() user: User) {
+    return await this.userService.updateById(id, user);
   }
 
   @Delete('/:id')
   @JsonResponse()
-  public async destroy(@Param('id') id: number) {
-    return await this.userService.destroy(id);
+  public async deleteById(@Param('id') id: number) {
+    return await this.userService.deleteById(id);
   }
 }

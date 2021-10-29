@@ -17,14 +17,14 @@ export class UserService {
     return await userRepository.save(user);
   }
 
-  public async update(id: number, payload: User) {
+  public async updateById(id: number, payload: User) {
     const userRepository = getManager().getRepository(User);
     const user = await userRepository.findOne(id);
     userRepository.merge(user, payload);
     return await userRepository.save(user);
   }
 
-  public async destroy(id: number) {
+  public async deleteById(id: number) {
     const userRepository = getManager().getRepository(User);
     const user = await userRepository.findOne(id);
     return await userRepository.delete(user);
