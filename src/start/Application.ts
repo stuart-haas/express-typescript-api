@@ -1,9 +1,9 @@
-import { AppInterface } from 'app/interfaces/AppInterface';
+import { IApplication } from 'interfaces/IApplication';
 import express from 'express';
 import { singleton } from 'tsyringe';
 
 @singleton()
-export class App implements AppInterface {
+export class Application implements IApplication {
   
   server: express.Application;
 

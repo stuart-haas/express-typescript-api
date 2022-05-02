@@ -1,45 +1,44 @@
-import { UserService } from './UserService';
+import { UserRepository } from './UserRepository';
 import { autoInjectable } from 'tsyringe';
 import { Controller, Get, JsonResponse, Post, Body, Param, Put, Delete } from 'decorators/controller';
 import { RequireAuthentication, RequireAuthorization } from 'middleware/Authentication';
-import { ControllerInterface } from 'interfaces/ControllerInterface';
-import { User } from 'app/entity/User';
+import { IController } from 'interfaces/IController';
 
 @autoInjectable()
 @Controller('/users')
 @RequireAuthentication()
-export class UserController implements ControllerInterface {
+export class UserController implements IController {
 
-  constructor(private userService: UserService) {}
+  constructor(private userRepository: UserRepository) {}
 
   @Get('/')
   @RequireAuthorization('admin')
   @JsonResponse()
   public async findAll() {
-    return await this.userService.findAll();
+    return await this.userRepository.findAll();
   }
 
   @Get('/:id')
   @JsonResponse()
   public async findById(@Param('id') id: number) {
-    return await this.userService.findById(id);
+    return await this.userRepository.findById(id);
   }
 
   @Post('/')
   @JsonResponse()
-  public async create(@Body() user: User) {
-    return await this.userService.create(user);
+  public async create(@Body() user: any) {
+    return await this.userRepository.create(user);
   }
 
   @Put('/:id')
   @JsonResponse()
-  public async updateById(@Param('id') id: number, @Body() user: User) {
-    return await this.userService.updateById(id, user);
+  public async updateById(@Param('id') id: number, @Body() user: any) {
+    return await this.userRepository.updateById(id, user);
   }
 
   @Delete('/:id')
   @JsonResponse()
   public async deleteById(@Param('id') id: number) {
-    return await this.userService.deleteById(id);
+    return await this.userRepository.deleteById(id);
   }
 }

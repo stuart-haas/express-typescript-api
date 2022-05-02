@@ -1,12 +1,12 @@
-import { MiddlewareInterface } from 'interfaces/MiddlewareInterface';
+import { IMiddleware } from 'interfaces/IMiddleware';
 
-export const defineMiddleware = (target, middleware: MiddlewareInterface | Array<MiddlewareInterface>) => {
+export const defineMiddleware = (target, middleware: IMiddleware | Array<IMiddleware>) => {
   if (!Reflect.hasMetadata('middleware', target)) {
     Reflect.defineMetadata('middleware', [], target);
   }
 
   if(middleware) {
-    let middlewares = Reflect.getMetadata('middleware', target) as Array<MiddlewareInterface>;
+    let middlewares = Reflect.getMetadata('middleware', target) as Array<IMiddleware>;
 
     if(Array.isArray(middleware)) {
       middlewares = [...middleware];
@@ -18,13 +18,13 @@ export const defineMiddleware = (target, middleware: MiddlewareInterface | Array
   }
 };
 
-export const ControllerMiddleware = (middleware: MiddlewareInterface | Array<MiddlewareInterface>): ClassDecorator => {
+export const ControllerMiddleware = (middleware: IMiddleware | Array<IMiddleware>): ClassDecorator => {
   return (target): void => {
     defineMiddleware(target, middleware);
   };
 };
 
-export const RouteMiddleware = (middleware: MiddlewareInterface | Array<MiddlewareInterface>): MethodDecorator => {
+export const RouteMiddleware = (middleware: IMiddleware | Array<IMiddleware>): MethodDecorator => {
   return (target): void => {
     defineMiddleware(target.constructor, middleware);
   };

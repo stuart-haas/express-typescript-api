@@ -1,15 +1,15 @@
-{
-  "root": true,
-  "parser": "@typescript-eslint/parser",
-  "plugins": [
+module.exports = {
+  root: true,
+  parser: "@typescript-eslint/parser",
+  plugins: [
     "@typescript-eslint"
   ],
-  "extends": [
+  extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended"
   ],
-  "rules": {
+  rules: {
     "indent": ["warn", 2],
     "quotes": [2, "single", { "avoidEscape": true }],
     "object-curly-spacing": ["error", "always"],

@@ -6,18 +6,19 @@ services:
     tty: true 
     build: 
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ops/docker/Dockerfile
     volumes:
       - ./:/home/node/api
       - /home/node/api/node_modules
     ports:
-      - 5000:5000
+      - 3001:3000
     depends_on: 
       - db
     environment:
       NODE_ENV: development
       HOST: 0.0.0.0
-    command: yarn dev
+      PORT: 3000
+    entrypoint: yarn dev
   db:
     container_name: express_db
     image: postgres:12
@@ -31,4 +32,4 @@ services:
       - 5433:5432
 volumes:
     db:
-        driver: local
+      driver: local

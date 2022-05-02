@@ -11,10 +11,6 @@ COPY . .
 
 RUN yarn global add nodemon
 
-RUN yarn global add typeorm
+EXPOSE 3000
 
-RUN yarn build
-
-EXPOSE 5000
-
-CMD ["yarn", "start"]
+ENTRYPOINT [ "yarn", "start" ]

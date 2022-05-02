@@ -1,4 +1,4 @@
-import { RouteInterface } from 'interfaces/RouteInterface';
+import { IRoute } from 'interfaces/IRoute';
 import { defineBody } from './Body';
 import { defineParam } from './Param';
 
@@ -8,7 +8,7 @@ export const Route = (requestMethod: string) => (path: string): MethodDecorator 
       Reflect.defineMetadata('routes', [], target.constructor);
     }
 
-    const routes = Reflect.getMetadata('routes', target.constructor) as Array<RouteInterface>;
+    const routes = Reflect.getMetadata('routes', target.constructor) as Array<IRoute>;
 
     routes.push({
       requestMethod,

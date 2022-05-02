@@ -8,8 +8,6 @@
 
 * Dependency injection using the [tsyringe](https://github.com/Microsoft/tsyringe) library
 
-* Database interaction and migrations with [TypeORM](https://typeorm.io/#/)
-
 ## Getting Started
 
 1. Copy the `.env.example` file to a new file called `.env` in the root directory
