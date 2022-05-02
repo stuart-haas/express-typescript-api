@@ -1,10 +1,10 @@
 import { Application } from 'start/Application';
 import { NextFunction, Request, Response } from 'express';
 import { container, InjectionToken } from 'tsyringe';
-import { IRoute } from 'interfaces/IRoute';
-import { IMiddleware } from 'interfaces/IMiddleware';
-import { IRouteProvider } from 'interfaces/IRouteProvider';
-import { IController } from 'interfaces/IController';
+import { IRoute } from 'core/interfaces/IRoute';
+import { IMiddleware } from 'core/interfaces/IMiddleware';
+import { IRouteProvider } from 'core/interfaces/IRouteProvider';
+import { IController } from 'core/interfaces/IController';
 
 export abstract class RouteProvider implements IRouteProvider {
 

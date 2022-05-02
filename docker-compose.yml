@@ -18,14 +18,19 @@ services:
       NODE_ENV: development
       HOST: 0.0.0.0
       PORT: 3000
+      PGUSER: root
+      PGHOST: db
+      PGPASSWORD: root
+      PGDATABASE: express_db
+      PGPORT: 5432
     entrypoint: yarn dev
   db:
     container_name: express_db
     image: postgres:12
     environment:
-      - POSTGRES_PASSWORD=root
-      - POSTGRES_USER=root
-      - POSTGRES_DB=express_db
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: root
+      POSTGRES_DB: express_db
     volumes:
       - db:/var/lib/postgresql/data
     ports:

@@ -1,8 +1,8 @@
 import { UserRepository } from './UserRepository';
 import { autoInjectable } from 'tsyringe';
-import { Controller, Get, JsonResponse, Post, Body, Param, Put, Delete } from 'decorators/controller';
+import { Controller, Get, JsonResponse, Post, Body, Param, Put, Delete } from 'core/decorators/http';
 import { RequireAuthentication, RequireAuthorization } from 'middleware/Authentication';
-import { IController } from 'interfaces/IController';
+import { IController } from 'core/interfaces/IController';
 
 @autoInjectable()
 @Controller('/users')

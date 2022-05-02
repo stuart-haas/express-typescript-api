@@ -1,4 +1,4 @@
-import { IMiddleware } from 'interfaces/IMiddleware';
+import { IMiddleware } from 'core/interfaces/IMiddleware';
 
 export const defineMiddleware = (target, middleware: IMiddleware | Array<IMiddleware>) => {
   if (!Reflect.hasMetadata('middleware', target)) {

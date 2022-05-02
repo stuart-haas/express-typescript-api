@@ -4,7 +4,7 @@ import cors from 'cors';
 import { Application } from 'start/Application';
 import { autoInjectable, singleton } from 'tsyringe';
 import dotenv from 'dotenv';
-import { IProvider } from 'interfaces/IProvider';
+import { IProvider } from 'core/interfaces/IProvider';
 
 dotenv.config();
 

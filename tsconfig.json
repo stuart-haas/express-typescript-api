@@ -18,7 +18,7 @@
       "root/*": ["/*"],
       "app/*": ["app/*"],
       "start/*": ["start/*"],
-      "core/*": ["app/core/*"],
+      "core/*": ["core/*"],
       "common/*": ["app/common/*"],
       "providers/*": ["app/providers/*"],
       "decorators/*": ["app/decorators/*"],

@@ -1,10 +1,10 @@
-import { IProvider } from 'interfaces/IProvider';
+import { IProvider } from 'core/interfaces/IProvider';
 import { Application } from 'start/Application';
 import { autoInjectable, singleton } from 'tsyringe';
 
 @singleton()
 @autoInjectable()
-export class AppProvider implements IProvider {
+export class ApplicationProvider implements IProvider {
 
   constructor(private app: Application) {}
 
