@@ -21,11 +21,12 @@ export class UserController implements IController {
     return rows;
   }
 
-  // @Get('/:id')
-  // @JsonResponse()
-  // public async findById(@Param('id') id: number) {
-  //   return await this.userRepository.findById(id);
-  // }
+  @Get('/:id')
+  @JsonResponse()
+  public async findById(@Param('id') id: number) {
+    const { rows } = await this.userRepository.findById(id);
+    return rows[0];
+  }
 
   @Post('/')
   @JsonResponse()
@@ -34,15 +35,17 @@ export class UserController implements IController {
     return rows;
   }
 
-  // @Put('/:id')
-  // @JsonResponse()
-  // public async updateById(@Param('id') id: number, @Body() user: any) {
-  //   return await this.userRepository.updateById(id, user);
-  // }
+  @Put('/:id')
+  @JsonResponse()
+  public async updateById(@Param('id') id: number, @Body() user: User) {
+    const { rows } = await this.userRepository.updateById(id, user);
+    return rows[0];
+  }
 
-  // @Delete('/:id')
-  // @JsonResponse()
-  // public async deleteById(@Param('id') id: number) {
-  //   return await this.userRepository.deleteById(id);
-  // }
+  @Delete('/:id')
+  @JsonResponse()
+  public async deleteById(@Param('id') id: number) {
+    const { rows } = await this.userRepository.deleteById(id);
+    return rows[0];
+  }
 }

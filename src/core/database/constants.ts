@@ -5,7 +5,11 @@ export const IF_NOT_EXISTS = 'IF NOT EXISTS';
 export const IF_EXISTS = 'IF EXISTS';
 export const SELECT = 'SELECT';
 export const FROM = 'FROM';
+export const INSERT_INTO = 'INSERT INTO';
+export const RETURNING = 'RETURNING *';
 export const ALL = '*';
+export const WHERE = 'WHERE';
+export const EQUAL = '=';
 
 // data types
 export const VARCHAR = 'VARCHAR';
@@ -19,3 +23,6 @@ export const VARCHAR_LENGTH = 255;
 export const SERIAL = 'SERIAL';
 export const PRIMARY_KEY = 'PRIMARY KEY';
 export const NOT_NULL = 'NOT NULL';
+
+// columns
+export const Id = 'id';

@@ -1,10 +1,7 @@
-import 'reflect-metadata';
 import { promises as fsPromises } from 'fs';
 import * as path from 'path';
-import { autoInjectable } from 'tsyringe';
 import { migration } from '../templates';
 
-@autoInjectable()
 export class MigrationService {
   migrationsPath: string;
 

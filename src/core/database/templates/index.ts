@@ -1,5 +1,5 @@
 export const migration = (name: string) => 
-`import { Migration } from 'core/database/Migration';
+`import { Migration } from 'core/database/abstracts/Migration';
 import { IMigration } from 'core/database/interfaces';
 import { DataTypes } from 'core/database/DataTypes';
 

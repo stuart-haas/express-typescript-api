@@ -16,6 +16,6 @@ export const Column = (type: ((() => string) | string)): PropertyDecorator => {
 
     Reflect.defineMetadata('columns', columns, target);
 
-    return Reflect.getMetadata(columns, target);
+    return Reflect.getMetadata(propertyKey, target);
   };
 };
