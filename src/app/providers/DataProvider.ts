@@ -1,40 +1,38 @@
 import { autoInjectable, singleton } from 'tsyringe';
 import { IProvider } from 'core/interfaces/IProvider';
-import { Application } from 'start/Application';
+import { QueryBuilder } from 'core/database/QueryBuilder';
 import { Database } from 'core/database/Database';
-import { createTable } from 'core/database/migrations';
-import { INTEGER, STRING, TEXT } from 'core/database/migrations/dataTypes';
+import { DataTypes } from 'core/database/DataTypes';
 
 @singleton()
 @autoInjectable()
 export class DataProvider implements IProvider {
 
-  constructor(private app: Application, private database: Database) {}
+  constructor(private database: Database, private queryBuilder: QueryBuilder) {}
 
-  start(): void {
-    // this.database.pool.query('SELECT NOW()', (err, res) => {
-    //   console.log(err, res);
-    //   this.database.pool.end();
-    // });
-    createTable('users', [
+  async start(): Promise<void> {
+    const query = await this.queryBuilder.createTable('users', [
       {
         id: {
-          type: INTEGER(),
+          type: DataTypes.INTEGER(),
           primaryKey: true,
+          // autoIncrement: true,
         }
       },
       {
         username: {
-          type: STRING(),
+          type: DataTypes.STRING(),
           nullable: false,
         }
       },
       {
         password: {
-          type: TEXT(),
+          type: DataTypes.TEXT(),
           nullable: false,
         }
       }
     ]);
+    // const query = await this.queryBuilder.dropTable('users');
+    this.database.execute(query);
   }
 }

@@ -29,6 +29,8 @@
       "errors/*": ["app/errors/*"],
       "utils/*": ["app/utils/*"], 
       "tests/*": ["tests/*"],
-    },
+    }
   },
+  "include": ["src/**/**/*"],
+  "exclude": ["node_modules", "src/**/*.spec.ts"]
 }

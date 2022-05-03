@@ -12,4 +12,8 @@ export class Database {
     this.pool = new Pool();
     this.client = new Client();
   }
+
+  async execute(query: string) {
+    return await this.pool.query(query);
+  }
 }
