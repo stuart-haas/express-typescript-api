@@ -1,5 +1,4 @@
 import { autoInjectable } from 'tsyringe';
-import { IColumn } from './interfaces';
 import { Model } from './Model';
 import { Create } from './queryBuilders/Create';
 import { CreateTable } from './queryBuilders/CreateTable';
@@ -27,8 +26,8 @@ export class QueryBuilderFactory {
     return new Create(table, payload);
   }
 
-  update(table: string, payload: Model, columns: IColumn[]): Update {
-    return new Update(table, payload, columns);
+  update(table: string, payload: Model): Update {
+    return new Update(table, payload);
   }
 
   delete(table: string): Delete {

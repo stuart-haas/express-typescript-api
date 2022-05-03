@@ -25,6 +25,12 @@ export class Repository {
     return await this.database.execute(query);
   }
 
+  async findWhere({ columns, search }: { columns?: string[], search?: Model }): Promise<any> {
+    const cols = this.entityMapper.mapColumns(this.model, columns);
+    const query = this.queryBuilderFactory.select(this.model.table).columns(cols).where(search).build();
+    return await this.database.execute(query);
+  }
+
   async findById(id: number, columns?: string[]): Promise<any> {
     const cols = this.entityMapper.mapColumns(this.model, columns);
     const primaryKey = this.entityMapper.getPrimaryKey(this.model);
@@ -39,8 +45,7 @@ export class Repository {
 
   async updateById(id: number, payload: Model) {
     const primaryKey = this.entityMapper.getPrimaryKey(this.model);
-    const columns = this.entityMapper.getColumns(this.model);
-    const query = this.queryBuilderFactory.update(this.model.table, payload, columns).whereEqual(primaryKey, id).returning().build();
+    const query = this.queryBuilderFactory.update(this.model.table, payload).whereEqual(primaryKey, id).returning().build();
     return await this.database.execute(query);
   }
 

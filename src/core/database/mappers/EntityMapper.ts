@@ -1,5 +1,4 @@
 import { autoInjectable } from 'tsyringe';
-import { Id } from '../constants';
 import { IColumn } from '../interfaces';
 import { Model } from '../Model';
 
@@ -20,6 +19,6 @@ export class EntityMapper {
   }
 
   getPrimaryKey(model: Model): string {
-    return Reflect.getMetadata('primaryKey', model) || Id;
+    return Reflect.getMetadata('primaryKey', model);
   }
 }

@@ -1,12 +1,11 @@
-import { ALL, EQUAL, RETURNING, TEXT, VARCHAR, WHERE } from '../constants';
-import { IColumn, IQuery } from '../interfaces';
+import { ALL, AND, EQUAL, RETURNING, WHERE } from '../constants';
+import { IQuery } from '../interfaces';
 import { Model } from '../Model';
 
 export abstract class QueryBuilder {
 
   protected table: string;
   protected payload: Model;
-  protected modelColumns: IColumn[];
   protected query: IQuery = {
     columns: ALL,
     raw: null,
@@ -16,10 +15,15 @@ export abstract class QueryBuilder {
     ifExists: null
   };
 
-  constructor(table?: string, payload?: Model, columns?: IColumn[]) {
+  constructor(table?: string, payload?: Model) {
     this.table = table;
     this.payload = payload;
-    this.modelColumns = columns;
+  }
+
+  where(search: Model) {
+    const params = search && Object.keys(search).map((e => `${e} = '${search[e]}'`)).join(` ${AND} `);
+    this.query.where = `${params ? WHERE : ''} ${params}`;
+    return this;
   }
 
   whereEqual(column: string, value: string | number | boolean): QueryBuilder {
@@ -41,11 +45,8 @@ export abstract class QueryBuilder {
   }
 
   private getColumnValue(name: string) {
-    const col = this.modelColumns.find((e: IColumn) => {
-      return e.name === name;
-    });
     // TODO: Add value mapper class based on data type
-    if(col.type.includes(VARCHAR) || col.type.includes(TEXT)) {
+    if(typeof this.payload[name] === 'string') {
       return `'${this.payload[name]}'`;
     }
     return this.payload[name];

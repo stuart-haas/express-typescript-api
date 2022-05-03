@@ -14,6 +14,7 @@ export const VALUES = 'VALUES';
 export const UPDATE = 'UPDATE';
 export const SET = 'SET';
 export const DELETE_FROM = 'DELETE FROM';
+export const AND = 'AND';
 
 // data types
 export const VARCHAR = 'VARCHAR';

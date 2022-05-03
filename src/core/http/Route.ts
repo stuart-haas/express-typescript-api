@@ -1,8 +1,9 @@
 import { IRoute } from 'core/interfaces/IRoute';
 import { defineBody } from './Body';
 import { defineParam } from './Param';
+import { defineQuery } from './Query';
 
-export const Route = (requestMethod: string) => (path: string): MethodDecorator => {
+export const Route = (requestMethod: string) => (path = ''): MethodDecorator => {
   return (target, propertyKey: string, descriptor: PropertyDescriptor): PropertyDescriptor | void => {
     if (!Reflect.hasMetadata('routes', target.constructor)) {
       Reflect.defineMetadata('routes', [], target.constructor);
@@ -12,7 +13,7 @@ export const Route = (requestMethod: string) => (path: string): MethodDecorator 
 
     routes.push({
       requestMethod,
-      path,
+      path: `/${path}`,
       methodName: propertyKey
     });
 
@@ -28,6 +29,8 @@ export const Route = (requestMethod: string) => (path: string): MethodDecorator 
       defineParam(target, propertyKey, req, newArgs);
 
       defineBody(target, propertyKey, req, newArgs);
+
+      defineQuery(target, propertyKey, req, newArgs);
 
       return await originalMethod.apply(this, newArgs);
     };

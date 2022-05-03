@@ -12,7 +12,7 @@ export class CreateTable extends QueryBuilder implements IQueryBuilder {
   constructor(table: string) {
     super(table);
     this.query.raw = `${CREATE_TABLE} $ifNotExists ${this.table} ($columns)`;
-    this.tableMapper = container.resolve(TableMapper) as TableMapper;
+    this.tableMapper = container.resolve(TableMapper);
   }
 
   ifNotExists(): CreateTable {
