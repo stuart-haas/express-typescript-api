@@ -1,15 +1,38 @@
 import { autoInjectable, singleton } from 'tsyringe';
 import { IProvider } from 'core/interfaces/IProvider';
-import { MigrationService } from 'core/database/services/MigrationService';
+import { QueryBuilderFactory } from 'core/database/QueryBuilderFactory';
+import { DataTypes } from 'core/database/DataTypes';
 
 @singleton()
 @autoInjectable()
 export class DataProvider implements IProvider {
 
-  constructor(private migrationService: MigrationService) {}
+  constructor(private queryBuilderFactory: QueryBuilderFactory) {}
 
-  async start(): Promise<void> {
-    // const response = await this.migrationService.create('CreateUsers');
-    // console.log(response);
+  start(): void {
+    let query = this.queryBuilderFactory.createTable('users').ifNotExists().columns([
+      {
+        id: {
+          type: DataTypes.INTEGER(),
+          primaryKey: true,
+        }
+      },
+      {
+        username: {
+          type: DataTypes.STRING(),
+          nullable: false,
+        }
+      },
+      {
+        password: {
+          type: DataTypes.TEXT(),
+          nullable: false,
+        }
+      }
+    ]).build();
+    console.log(query);
+    
+    query = this.queryBuilderFactory.dropTable('users').ifExists().build();
+    console.log(query);
   }
 }

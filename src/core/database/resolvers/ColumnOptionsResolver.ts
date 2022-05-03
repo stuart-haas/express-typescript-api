@@ -1,14 +1,7 @@
 import { autoInjectable } from 'tsyringe';
-  
-export interface IColumnOptionsResolver {
-    resolve: (opt: string, arg: any) => string;
-    type: (arg: string) => string;
-    nullable: (arg: boolean) => string;
-    primaryKey: (arg: boolean) => string;
-    autoIncrement: (arg: boolean) => string;
-  }
+import { IColumnOptionsResolver } from '../interfaces';
 
-  @autoInjectable()
+@autoInjectable()
 export class ColumnOptionsResolver implements IColumnOptionsResolver {
   resolve(opt: string, arg: any) {
     return this[opt](arg);

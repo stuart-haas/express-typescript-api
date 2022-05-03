@@ -1,10 +1,10 @@
-export interface ColumnOptions {
+export type ColumnOptions = {
   type: string;
   nullable?: boolean;
   primaryKey?: boolean;
   autoIncrement?: boolean;
 }
 
-export interface Column {
+export type Column = {
   [name: string]: ColumnOptions;
 }
