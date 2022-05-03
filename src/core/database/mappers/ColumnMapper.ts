@@ -11,8 +11,8 @@ export class ColumnMapper {
     return columns.map((col: Column) => {
       const name = Object.keys(col)[0];
       const options = Object.values(col)[0];
-      const parsedOptions = this.mapOptions(options);
-      return `${name} ${parsedOptions}`;
+      const mappedOptions = this.mapOptions(options);
+      return `${name} ${mappedOptions}`;
     }).join(', ');
   }
   

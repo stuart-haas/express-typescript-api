@@ -1,17 +1,17 @@
-import { IndexService } from './IndexService';
+import { IndexRepository } from './IndexRepository';
 import { autoInjectable } from 'tsyringe';
-import { Controller, Get, TextResponse } from 'core/decorators/http';
+import { Controller, Get, TextResponse } from 'core/http';
 import { IController } from 'core/interfaces/IController';
 
 @autoInjectable()
 @Controller('/')
 export class IndexController implements IController {
 
-  constructor(private indexService: IndexService) {}
+  constructor(private indexRepository: IndexRepository) {}
 
   @Get('')
   @TextResponse()
   public async hello() {
-    return await this.indexService.hello();
+    return await this.indexRepository.hello();
   }
 }

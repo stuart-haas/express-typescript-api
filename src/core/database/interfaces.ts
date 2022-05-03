@@ -18,3 +18,12 @@ export interface IMigration {
 export interface IQueryBuilder {
   build: () => string;
 }
+
+export interface IModel {
+  table: string;
+}
+
+export interface IColumn {
+  type: string;
+  name: PropertyKey
+}

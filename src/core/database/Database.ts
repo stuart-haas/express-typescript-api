@@ -13,7 +13,7 @@ export class Database {
     this.client = new Client();
   }
 
-  async execute(query: string) {
-    return await this.pool.query(query);
+  async execute(query: string, values?: Array<string | number | boolean>) {
+    return await this.pool.query(query, values);
   }
 }

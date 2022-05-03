@@ -1,13 +1,19 @@
 // query
-export const CREATE_TABLE = 'CREATE_TABLE';
+export const CREATE_TABLE = 'CREATE TABLE';
 export const DROP_TABLE = 'DROP TABLE';
 export const IF_NOT_EXISTS = 'IF NOT EXISTS';
 export const IF_EXISTS = 'IF EXISTS';
+export const SELECT = 'SELECT';
+export const FROM = 'FROM';
+export const ALL = '*';
 
 // data types
 export const VARCHAR = 'VARCHAR';
 export const TEXT = 'TEXT';
 export const INTEGER = 'INTEGER';
+
+// data type args
+export const VARCHAR_LENGTH = 255;
 
 // column options
 export const SERIAL = 'SERIAL';

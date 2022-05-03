@@ -1,4 +1,4 @@
-import { ControllerMiddleware, RouteMiddleware } from 'core/decorators/http';
+import { ControllerMiddleware, RouteMiddleware } from 'core/http';
 import { NextFunction, Request, Response } from 'express';
 
 export const Authentication = (req: Request, res: Response, next: NextFunction) => {

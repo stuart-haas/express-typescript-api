@@ -1,38 +1,15 @@
-import { autoInjectable, singleton } from 'tsyringe';
+import { autoInjectable, singleton, container } from 'tsyringe';
 import { IProvider } from 'core/interfaces/IProvider';
-import { QueryBuilderFactory } from 'core/database/QueryBuilderFactory';
-import { DataTypes } from 'core/database/DataTypes';
+import { User } from 'app/models/User';
+import { Repository } from 'core/database/Repository';
+
+export const UserRepository = Symbol('UserRepository');
 
 @singleton()
 @autoInjectable()
 export class DataProvider implements IProvider {
 
-  constructor(private queryBuilderFactory: QueryBuilderFactory) {}
-
   start(): void {
-    let query = this.queryBuilderFactory.createTable('users').ifNotExists().columns([
-      {
-        id: {
-          type: DataTypes.INTEGER,
-          primaryKey: true,
-        }
-      },
-      {
-        username: {
-          type: DataTypes.VARCHAR,
-          nullable: false,
-        }
-      },
-      {
-        password: {
-          type: DataTypes.TEXT,
-          nullable: false,
-        }
-      }
-    ]).build();
-    console.log(query);
-    
-    query = this.queryBuilderFactory.dropTable('users').ifExists().build();
-    console.log(query);
+    container.register<Repository>(UserRepository, { useValue: new Repository(User) });
   }
 }
