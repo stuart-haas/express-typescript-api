@@ -1,9 +1,9 @@
 import { IndexRepository } from './IndexRepository';
-import { autoInjectable } from 'tsyringe';
+import { injectable } from 'tsyringe';
 import { Controller, Get, TextResponse } from 'core/http';
 import { IController } from 'core/interfaces/IController';
 
-@autoInjectable()
+@injectable()
 @Controller('/')
 export class IndexController implements IController {
 

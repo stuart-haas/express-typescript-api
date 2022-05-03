@@ -21,6 +21,7 @@ export interface IQueryBuilder {
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IModel {
+  table: string;
 }
 
 export interface IColumn {

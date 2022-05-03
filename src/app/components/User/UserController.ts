@@ -1,4 +1,4 @@
-import { autoInjectable, inject } from 'tsyringe';
+import { inject, injectable } from 'tsyringe';
 import { Controller, Get, JsonResponse, Post, Body, Param, Put, Delete } from 'core/http';
 import { RequireAuthentication, RequireAuthorization } from 'middleware/Authentication';
 import { IController } from 'core/interfaces/IController';
@@ -6,7 +6,7 @@ import { Repository } from 'core/database/Repository';
 import { UserRepository } from 'app/providers/DataProvider';
 import { User } from 'app/models/User';
 
-@autoInjectable()
+@injectable()
 @Controller('/users')
 @RequireAuthentication()
 export class UserController implements IController {
