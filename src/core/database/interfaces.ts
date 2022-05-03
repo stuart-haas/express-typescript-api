@@ -1,6 +1,6 @@
 export interface IColumnOptionsResolver {
-  resolve: (opt: string, arg: any) => string;
-  type: (arg: string) => string;
+  resolve: (opt: string, arg: (() => string) | string | boolean | number) => string;
+  type: (arg: (() => string) | string) => string;
   nullable: (arg: boolean) => string;
   primaryKey: (arg: boolean) => string;
   autoIncrement: (arg: boolean) => string;

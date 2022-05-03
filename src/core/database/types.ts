@@ -1,5 +1,5 @@
 export type ColumnOptions = {
-  type: string;
+  type: (() => string) | string;
   nullable?: boolean;
   primaryKey?: boolean;
   autoIncrement?: boolean;

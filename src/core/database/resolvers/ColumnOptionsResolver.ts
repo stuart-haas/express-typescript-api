@@ -1,19 +1,23 @@
 import { autoInjectable } from 'tsyringe';
+import { NOT_NULL, PRIMARY_KEY, SERIAL } from '../constants';
 import { IColumnOptionsResolver } from '../interfaces';
 
 @autoInjectable()
 export class ColumnOptionsResolver implements IColumnOptionsResolver {
-  resolve(opt: string, arg: any) {
+  resolve(opt: string, arg: (() => string) | string | boolean | number) {
     return this[opt](arg);
   }
   
-  type(arg: string) {
+  type(arg: (() => string) | string) {
+    if(typeof arg === 'function') {
+      return arg();
+    }
     return arg;
   }
 
   autoIncrement(arg?: boolean) {
     if(arg) {
-      return 'SERIAL';
+      return SERIAL;
     }
     return '';
   }
@@ -22,12 +26,12 @@ export class ColumnOptionsResolver implements IColumnOptionsResolver {
     if(arg) {
       return '';
     }
-    return 'NOT NULL';
+    return NOT_NULL;
   }
 
   primaryKey(arg?: boolean) {
     if(arg) {
-      return 'PRIMARY KEY';
+      return PRIMARY_KEY;
     }
     return '';
   }

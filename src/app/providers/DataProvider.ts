@@ -13,19 +13,19 @@ export class DataProvider implements IProvider {
     let query = this.queryBuilderFactory.createTable('users').ifNotExists().columns([
       {
         id: {
-          type: DataTypes.INTEGER(),
+          type: DataTypes.INTEGER,
           primaryKey: true,
         }
       },
       {
         username: {
-          type: DataTypes.STRING(),
+          type: DataTypes.VARCHAR,
           nullable: false,
         }
       },
       {
         password: {
-          type: DataTypes.TEXT(),
+          type: DataTypes.TEXT,
           nullable: false,
         }
       }

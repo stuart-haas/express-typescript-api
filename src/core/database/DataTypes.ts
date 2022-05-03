@@ -1,14 +1,16 @@
+import { INTEGER, TEXT, VARCHAR } from './constants';
+
 export class DataTypes {
 
-  static STRING(length = 255) {
-    return `VARCHAR(${length})`;
+  static VARCHAR(length = 255) {
+    return `${VARCHAR}(${length})`;
   }
   
   static TEXT () {
-    return 'TEXT';
+    return TEXT;
   }
   
   static INTEGER () {
-    return 'INTEGER';
+    return INTEGER;
   }
 }

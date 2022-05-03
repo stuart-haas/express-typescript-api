@@ -9,19 +9,19 @@ export class CreateUsers_1651551649961 extends Migration implements IMigration {
       .columns([
         {
           id: {
-            type: DataTypes.INTEGER(),
+            type: DataTypes.INTEGER,
             primaryKey: true,
           }
         },
         {
           username: {
-            type: DataTypes.STRING(),
+            type: DataTypes.VARCHAR,
             nullable: false,
           }
         },
         {
           password: {
-            type: DataTypes.TEXT(),
+            type: DataTypes.TEXT,
             nullable: false,
           }
         }
