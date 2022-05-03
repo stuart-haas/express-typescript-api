@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "Express Typescript API",
   "main": "index.js",
+  "bin": {
+    "cli": "./bin/cli.js"
+  },
   "scripts": {
     "up": "docker-compose up",
     "down": "docker-compose down",
-    "dev": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' -r tsconfig-paths/register src/index.ts",
+    "dev": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --ignore 'src/database/**/*.ts' --exec 'ts-node' -r tsconfig-paths/register src/index.ts",
     "build": "tsc --build",
     "start": "yarn build && node -r ts-node/register/transpile-only -r tsconfig-paths/register dist/index.js",
     "lint": "eslint . --ext .ts",
@@ -26,20 +29,21 @@
   "author": "Stuart Haas",
   "license": "ISC",
   "dependencies": {
-    "@types/bcryptjs": "^2.4.2",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^4.2.0",
     "mysql": "^2.14.1",
+    "oclif": "^3.0.1",
     "pg": "^8.7.1",
     "tsyringe": "^4.6.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/cors": "^2.8.8",
     "@types/express": "^4.17.9",
-    "@types/node": "^8.0.29",
+    "@types/node": "14.14.31",
     "@typescript-eslint/eslint-plugin": "^5.1.0",
     "@typescript-eslint/parser": "^5.1.0",
     "eslint": "^8.0.1",

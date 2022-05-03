@@ -1,23 +1,23 @@
 import { autoInjectable } from 'tsyringe';
-import { Column } from './OptionsResolver';
-import { Column as ColumnType, ColumnOptions } from './types';
+import { ColumnOptionsResolver } from './ColumnOptionsResolver';
+import { Column, ColumnOptions } from './types';
 
 @autoInjectable()
 export class QueryBuilder {
 
-  constructor(private optionsResolver: Column.OptionsResolver) {}
+  constructor(private optionsResolver: ColumnOptionsResolver) {}
 
-  async createTable (tableName: string, columns: ColumnType[]) {
+  createTable (tableName: string, columns: Column[]) {
     const cols = this.mapColumns(columns);
     return `CREATE TABLE IF NOT EXISTS ${tableName} (${cols})`;
   }
   
-  async dropTable (tableName: string) {
+  dropTable (tableName: string) {
     return `DROP TABLE IF EXISTS ${tableName}`;
   }
 
-  private mapColumns(columns: ColumnType[]): string {
-    return columns.map((col: ColumnType) => {
+  private mapColumns(columns: Column[]): string {
+    return columns.map((col: Column) => {
       const name = Object.keys(col)[0];
       const options = Object.values(col)[0];
       const parsedOptions = this.mapOptions(options);

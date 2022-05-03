@@ -1,6 +1,6 @@
 export class DataTypes {
 
-  static STRING(length: number = 255) {
+  static STRING(length = 255) {
     return `VARCHAR(${length})`;
   }
   
