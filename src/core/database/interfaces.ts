@@ -30,6 +30,7 @@ export interface IColumn {
 }
 
 export interface Query {
+  raw?: string;
   columns?: string;
   where?: string;
   returning?: string;

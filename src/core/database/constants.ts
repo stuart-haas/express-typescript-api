@@ -11,6 +11,9 @@ export const ALL = '*';
 export const WHERE = 'WHERE';
 export const EQUAL = '=';
 export const VALUES = 'VALUES';
+export const UPDATE = 'UPDATE';
+export const SET = 'SET';
+export const DELETE_FROM = 'DELETE FROM';
 
 // data types
 export const VARCHAR = 'VARCHAR';

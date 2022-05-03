@@ -9,7 +9,7 @@ export class CreateTable extends QueryBuilder implements IQueryBuilder {
 
   constructor(table: string) {
     super(table);
-    this.rawQuery = `${CREATE_TABLE} $${Symbol(this.query.ifNotExists).toString()} ${this.table} ($columns)`;
+    this.query.raw = `${CREATE_TABLE} $${Symbol(this.query.ifNotExists).toString()} ${this.table} ($columns)`;
   }
 
   ifNotExists(): CreateTable {
@@ -21,9 +21,5 @@ export class CreateTable extends QueryBuilder implements IQueryBuilder {
     const columnMapper = container.resolve(ColumnMapper) as ColumnMapper;
     this.query.columns = columnMapper.mapColumns(columns);
     return this;
-  }
-
-  build(): string {
-    return super.build();
   }
 }
