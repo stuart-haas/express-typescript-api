@@ -4,22 +4,22 @@ import { IQueryBuilder } from '../interfaces';
 
 export class Select extends QueryBuilder implements IQueryBuilder {
 
-  constructor(name: string) {
-    super();
-    this.name = name;
+  constructor(table: string) {
+    super(table);
+    this.rawQuery = `${SELECT} $columns ${FROM} ${table} $where`;
   }
 
   columns(columns: string[]): Select {
-    this.cols = columns.length ? columns.join(', ') : ALL;
+    this.query.columns = columns.length ? columns.join(', ') : ALL;
     return this;
   }
 
   whereEqual(column: string, value: string | number | boolean): Select {
-    this.where = `${WHERE} ${column} ${EQUAL} ${value}`;
+    this.query.where = `${WHERE} ${column} ${EQUAL} ${value}`;
     return this;
   }
 
   build(): string {
-    return `${SELECT} ${this.cols} ${FROM} ${this.name} ${this.where}`;
+    return super.build();
   }
 }

@@ -10,6 +10,7 @@ export const RETURNING = 'RETURNING *';
 export const ALL = '*';
 export const WHERE = 'WHERE';
 export const EQUAL = '=';
+export const VALUES = 'VALUES';
 
 // data types
 export const VARCHAR = 'VARCHAR';

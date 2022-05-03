@@ -7,23 +7,23 @@ import { Column } from '../types';
 
 export class CreateTable extends QueryBuilder implements IQueryBuilder {
 
-  constructor(name: string) {
-    super();
-    this.name = name;
+  constructor(table: string) {
+    super(table);
+    this.rawQuery = `${CREATE_TABLE} $${Symbol(this.query.ifNotExists).toString()} ${this.table} ($columns)`;
   }
 
   ifNotExists(): CreateTable {
-    this.options += IF_NOT_EXISTS;
+    this.query.ifNotExists = IF_NOT_EXISTS;
     return this;
   }
 
   columns(columns: Column[]): CreateTable {
     const columnMapper = container.resolve(ColumnMapper) as ColumnMapper;
-    this.cols = columnMapper.mapColumns(columns);
+    this.query.columns = columnMapper.mapColumns(columns);
     return this;
   }
 
   build(): string {
-    return `${CREATE_TABLE} ${this.options} ${this.name} (${this.cols})`;
+    return super.build();
   }
 }

@@ -28,3 +28,11 @@ export interface IColumn {
   type: string;
   name: PropertyKey
 }
+
+export interface Query {
+  columns?: string;
+  where?: string;
+  returning?: string;
+  ifNotExists?: string;
+  ifExists?: string;
+}

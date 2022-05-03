@@ -4,17 +4,17 @@ import { IQueryBuilder } from '../interfaces';
 
 export class DropTable extends QueryBuilder implements IQueryBuilder {
 
-  constructor(name: string) {
-    super();
-    this.name = name;
+  constructor(table: string) {
+    super(table);
+    this.rawQuery =  `${DROP_TABLE} $ifExists ${this.table}`;
   }
 
   ifExists(): DropTable {
-    this.options += IF_EXISTS;
+    this.query.ifExists = IF_EXISTS;
     return this;
   }
 
   build(): string {
-    return `${DROP_TABLE} ${this.options} ${this.name}`;
+    return super.build();
   }
 }

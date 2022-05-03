@@ -31,10 +31,8 @@ export class Repository {
   }
 
   async create(payload: Model) {
-    const values = Object.values(payload);
-    const valueParams = values.map((e: string | number, i: number) => `$${i + 1}`).join(', ');
-    const query = `${INSERT_INTO} ${this.model.table} VALUES(${valueParams}) ${RETURNING}`;
-    return await this.database.execute(query, values);
+    const queryBuilder = this.queryBuilderFactory.create(this.model.table, payload).returning();
+    return await this.database.execute(queryBuilder.build(), queryBuilder.payload);
   }
 
   async updateById(id: number, payload: Model) {

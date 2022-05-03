@@ -32,7 +32,7 @@ export class UserController implements IController {
   @JsonResponse()
   public async create(@Body() user: User) {
     const { rows } = await this.userRepository.create(user);
-    return rows;
+    return rows[0];
   }
 
   @Put('/:id')
