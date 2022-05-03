@@ -1,10 +1,10 @@
 import { autoInjectable } from 'tsyringe';
 import { NOT_NULL, PRIMARY_KEY, SERIAL } from '../constants';
-import { IColumnOptionsResolver } from '../interfaces';
+import { IColumnOptionsArgs, IColumnOptionsResolver } from '../interfaces';
 
 @autoInjectable()
 export class ColumnOptionsResolver implements IColumnOptionsResolver {
-  resolve(opt: string, arg: (() => string) | string | boolean | number) {
+  resolve(opt: string, arg: IColumnOptionsArgs) {
     return this[opt](arg);
   }
   

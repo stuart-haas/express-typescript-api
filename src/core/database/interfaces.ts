@@ -1,5 +1,9 @@
+export interface IColumnOptionsArgs {
+  arg: (() => string) | string | boolean | number
+}
+
 export interface IColumnOptionsResolver {
-  resolve: (opt: string, arg: (() => string) | string | boolean | number) => string;
+  resolve: (opt: string, arg: IColumnOptionsArgs) => string;
   type: (arg: (() => string) | string) => string;
   nullable: (arg: boolean) => string;
   primaryKey: (arg: boolean) => string;
