@@ -23,8 +23,8 @@ export class UserController implements IController {
 
   @Get('search')
   @JsonResponse()
-  public async search(@Query() query: User) {
-    const { rows } = await this.userRepository.findWhere({ search: query });
+  public async search(@Query() search: any) {
+    const { rows } = await this.userRepository.search(search);
     return rows;
   }
 

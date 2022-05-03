@@ -25,16 +25,15 @@ export class Repository {
     return await this.database.execute(query);
   }
 
-  async findWhere({ columns, search }: { columns?: string[], search?: Model }): Promise<any> {
-    const cols = this.entityMapper.mapColumns(this.model, columns);
-    const query = this.queryBuilderFactory.select(this.model.table).columns(cols).where(search).build();
+  async search(search?: any): Promise<any> {
+    const query = this.queryBuilderFactory.select(this.model.table).where(search).build();
     return await this.database.execute(query);
   }
 
   async findById(id: number, columns?: string[]): Promise<any> {
     const cols = this.entityMapper.mapColumns(this.model, columns);
     const primaryKey = this.entityMapper.getPrimaryKey(this.model);
-    const query = this.queryBuilderFactory.select(this.model.table).columns(cols).whereEqual(primaryKey, id).build();
+    const query = this.queryBuilderFactory.select(this.model.table).columns(cols).where({ [primaryKey]:  id }).build();
     return await this.database.execute(query);
   }
 
@@ -45,13 +44,13 @@ export class Repository {
 
   async updateById(id: number, payload: Model) {
     const primaryKey = this.entityMapper.getPrimaryKey(this.model);
-    const query = this.queryBuilderFactory.update(this.model.table, payload).whereEqual(primaryKey, id).returning().build();
+    const query = this.queryBuilderFactory.update(this.model.table, payload).where({ [primaryKey]:  id }).returning().build();
     return await this.database.execute(query);
   }
 
   async deleteById(id: number) {
     const primaryKey = this.entityMapper.getPrimaryKey(this.model);
-    const query = this.queryBuilderFactory.delete(this.model.table).whereEqual(primaryKey, id).returning().build();
+    const query = this.queryBuilderFactory.delete(this.model.table).where({ [primaryKey]:  id }).returning().build();
     return await this.database.execute(query);
   }
 }

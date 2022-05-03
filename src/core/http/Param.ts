@@ -2,7 +2,7 @@ import { Request } from 'express';
 
 export const defineParam = (target, propertyKey: string, req: Request, newArgs: any[]) => {
   if (Reflect.hasOwnMetadata('param', target.constructor, propertyKey)) {
-    if(Object.keys(req.params).length) {
+    if(req.params) {
       const param = Reflect.getOwnMetadata('param', target.constructor, propertyKey);
       const { key, parameterIndex } = param;
       newArgs.splice(parameterIndex, 0, req.params[key]);
