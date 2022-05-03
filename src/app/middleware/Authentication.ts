@@ -2,12 +2,12 @@ import { ControllerMiddleware, RouteMiddleware } from 'core/http';
 import { NextFunction, Request, Response } from 'express';
 
 export const Authentication = (req: Request, res: Response, next: NextFunction) => {
-  console.log('Check if user is authenticated');
+  // console.log('Check if user is authenticated');
   return next();
 };
 
 export const Authorization = (role: string) => (req: Request, res: Response, next: NextFunction) => {
-  console.log(`Check if user is authorized with role ${role}`);
+  // console.log(`Check if user is authorized with role ${role}`);
   return next();
 };
 

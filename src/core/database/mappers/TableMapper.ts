@@ -3,7 +3,7 @@ import { ColumnOptionsResolver } from '../resolvers/ColumnOptionsResolver';
 import { Column, ColumnOptions } from '../types';
 
 @autoInjectable()
-export class ColumnMapper {
+export class TableMapper {
 
   constructor(private columnOptionsResolver: ColumnOptionsResolver) {}
 
@@ -11,12 +11,12 @@ export class ColumnMapper {
     return columns.map((col: Column) => {
       const name = Object.keys(col)[0];
       const options = Object.values(col)[0];
-      const mappedOptions = this.mapOptions(options);
+      const mappedOptions = this.mapColumnOptions(options);
       return `${name} ${mappedOptions}`;
     }).join(', ');
   }
   
-  private mapOptions(options: ColumnOptions) {
+  private mapColumnOptions(options: ColumnOptions) {
     return Object.keys(options).map((opt: string) => {
       if(Object.prototype.hasOwnProperty.call(options, opt)) {
         return this.columnOptionsResolver.resolve(opt, options[opt]);

@@ -2,14 +2,17 @@ import { container } from 'tsyringe';
 import { QueryBuilder } from '../abstracts/QueryBuilder';
 import { CREATE_TABLE, IF_NOT_EXISTS } from '../constants';
 import { IQueryBuilder } from '../interfaces';
-import { ColumnMapper } from '../mappers/ColumnMapper';
+import { TableMapper } from '../mappers/TableMapper';
 import { Column } from '../types';
 
 export class CreateTable extends QueryBuilder implements IQueryBuilder {
 
+  tableMapper: TableMapper;
+
   constructor(table: string) {
     super(table);
-    this.query.raw = `${CREATE_TABLE} $${Symbol(this.query.ifNotExists).toString()} ${this.table} ($columns)`;
+    this.query.raw = `${CREATE_TABLE} $ifNotExists ${this.table} ($columns)`;
+    this.tableMapper = container.resolve(TableMapper) as TableMapper;
   }
 
   ifNotExists(): CreateTable {
@@ -18,8 +21,7 @@ export class CreateTable extends QueryBuilder implements IQueryBuilder {
   }
 
   columns(columns: Column[]): CreateTable {
-    const columnMapper = container.resolve(ColumnMapper) as ColumnMapper;
-    this.query.columns = columnMapper.mapColumns(columns);
+    this.query.columns = this.tableMapper.mapColumns(columns);
     return this;
   }
 }

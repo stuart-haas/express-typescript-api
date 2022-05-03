@@ -1,22 +1,25 @@
-import { ALL, EQUAL, Id, RETURNING, TEXT, VARCHAR, WHERE } from '../constants';
-import { IColumn, Query } from '../interfaces';
+import { ALL, EQUAL, RETURNING, TEXT, VARCHAR, WHERE } from '../constants';
+import { IColumn, IQuery } from '../interfaces';
 import { Model } from '../Model';
 
 export abstract class QueryBuilder {
+
   protected table: string;
-  protected params: string;
-  protected values = [];
-  protected query: Query = {
+  protected payload: Model;
+  protected modelColumns: IColumn[];
+  protected query: IQuery = {
     columns: ALL,
-    raw: '',
-    where: '',
-    returning: '',
-    ifNotExists: '',
-    ifExists: ''
+    raw: null,
+    where: null,
+    returning: null,
+    ifNotExists: null,
+    ifExists: null
   };
 
-  constructor(table?: string) {
+  constructor(table?: string, payload?: Model, columns?: IColumn[]) {
     this.table = table;
+    this.payload = payload;
+    this.modelColumns = columns;
   }
 
   whereEqual(column: string, value: string | number | boolean): QueryBuilder {
@@ -32,53 +35,31 @@ export abstract class QueryBuilder {
   build() {
     const keys = Object.keys(this.query);
     keys.forEach((e: string) => {
-      this.query.raw = this.query.raw.replace(`$${e}`, this.query[e]);
+      this.query.raw = this.query.raw.replace(`$${e}`, this.query[e] ? this.query[e] : '');
     });
     return this.query.raw;
   }
 
-  static mapColumns(model: Model, columns?: string[]) {
-    const cols = QueryBuilder.getColumns(model);
-    return cols.map((a: IColumn) => {
-      const col = columns && columns.find((b: string) => a.name === b);
-      if(col) return col;
-      return null;
-    }).filter((e: string) => e !== null);
-  }
-
-  static mapInsertParams(payload: Model) {
-    const values = Object.values(payload);
-    const params = values.map((e: string | number, i: number) => `$${i + 1}`).join(', ');
-    return { values, params };
-  }
-
-  static mapUpdateParams(payload: Model, columns: IColumn[]) {
-    const values = Object.values(payload);
-    const keys = Object.keys(payload);
-    const params = keys.map((e: string) => `${e} = ${QueryBuilder.getColumnValue(e, payload, columns)}`).join(', ');
-    return { values, params };
-  }
-
-  static getColumns(model: Model) {
-    return Reflect.getMetadata('columns', model);
-  }
-
-  static getPrimaryKey(model: Model): string {
-    return Reflect.getMetadata('primaryKey', model) || Id;
-  }
-
-  private static getColumnValue(name: string, payload: Model, columns: IColumn[]) {
-    const col = columns.find((e: IColumn) => {
+  private getColumnValue(name: string) {
+    const col = this.modelColumns.find((e: IColumn) => {
       return e.name === name;
     });
     // TODO: Add value mapper class based on data type
     if(col.type.includes(VARCHAR) || col.type.includes(TEXT)) {
-      return `'${payload[name]}'`;
+      return `'${this.payload[name]}'`;
     }
-    return payload[name];
+    return this.payload[name];
   }
 
-  get payload() {
-    return this.values;
+  get values() {
+    return Object.values(this.payload);
+  }
+
+  protected get insertParams() {
+    return this.values.map((e: string | number, i: number) => `$${i + 1}`).join(', ');
+  }
+
+  protected get updateParams() {
+    return Object.keys(this.payload).map((e: string) => `${e} = ${this.getColumnValue(e)}`).join(', ');
   }
 }

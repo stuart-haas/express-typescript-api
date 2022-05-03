@@ -29,7 +29,7 @@ export interface IColumn {
   name: PropertyKey
 }
 
-export interface Query {
+export interface IQuery {
   raw?: string;
   columns?: string;
   where?: string;

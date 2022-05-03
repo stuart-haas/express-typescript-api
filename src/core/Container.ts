@@ -8,7 +8,7 @@ export abstract class Container implements IContainer {
 
   start(): void {
     this.providers.forEach(provider => {
-      const instance = container.resolve(provider) as IProvider;
+      const instance = container.resolve(provider);
       instance.start();
     });
   }
