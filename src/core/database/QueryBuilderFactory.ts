@@ -1,11 +1,6 @@
 import { autoInjectable } from 'tsyringe';
 import { Model } from './Model';
-import { Create } from './queryBuilders/Create';
-import { CreateTable } from './queryBuilders/CreateTable';
-import { Delete } from './queryBuilders/Delete';
-import { DropTable } from './queryBuilders/DropTable';
-import { Select } from './queryBuilders/Select';
-import { Update } from './queryBuilders/Update';
+import { Create, CreateTable, Delete, DropTable, Select, Update } from './queryBuilders';
 
 @autoInjectable()
 export class QueryBuilderFactory {

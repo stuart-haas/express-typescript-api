@@ -21,7 +21,7 @@ export abstract class QueryBuilder {
   }
 
   where(search?: any) {
-    const params = search && Object.keys(search).map((e => `${e} = '${search[e]}'`)).join(` ${AND} `);
+    const params = search && Object.keys(search).map((e => `${e} ${EQUAL} '${search[e]}'`)).join(` ${AND} `);
     this.query.where = `${params ? WHERE : ''} ${params}`;
     return this;
   }
@@ -31,9 +31,12 @@ export abstract class QueryBuilder {
     return this;
   }
 
-  build() {
-    const keys = Object.keys(this.query);
-    keys.forEach((e: string) => {
+  build(): string {
+    return this.parse();
+  }
+
+  private parse() {
+    Object.keys(this.query).forEach((e: string) => {
       this.query.raw = this.query.raw.replace(`$${e}`, this.query[e] ? this.query[e] : '');
     });
     return this.query.raw;
