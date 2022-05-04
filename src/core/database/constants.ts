@@ -28,6 +28,3 @@ export const VARCHAR_LENGTH = 255;
 export const SERIAL = 'SERIAL';
 export const PRIMARY_KEY = 'PRIMARY KEY';
 export const NOT_NULL = 'NOT NULL';
-
-// columns
-export const Id = 'id';
