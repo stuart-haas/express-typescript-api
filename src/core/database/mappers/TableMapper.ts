@@ -1,4 +1,5 @@
 import { autoInjectable } from 'tsyringe';
+import { Model } from '../Model';
 import { ColumnOptionsResolver } from '../resolvers/ColumnOptionsResolver';
 import { Column, ColumnOptions } from '../types';
 
@@ -14,6 +15,13 @@ export class TableMapper {
       const mappedOptions = this.mapColumnOptions(options);
       return `${name} ${mappedOptions}`;
     }).join(', ');
+  }
+
+  getColumnValue(payload: Model, name: string) {
+    if(typeof payload[name] === 'string') {
+      return `'${payload[name]}'`;
+    }
+    return payload[name];
   }
   
   private mapColumnOptions(options: ColumnOptions) {

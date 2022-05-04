@@ -7,6 +7,6 @@ export class Update extends QueryBuilder implements IQueryBuilder {
 
   constructor(table: string, payload: Model) {
     super(table, payload);
-    this.query.raw = `${UPDATE} ${table} ${SET} ${this.updateParams} $where $returning`;
+    this.query.raw = `${UPDATE} ${table} ${SET} ${this.updateParams} {where} {returning}`;
   }
 }

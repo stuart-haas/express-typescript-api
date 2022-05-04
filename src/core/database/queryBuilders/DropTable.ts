@@ -6,7 +6,7 @@ export class DropTable extends QueryBuilder implements IQueryBuilder {
 
   constructor(table: string) {
     super(table);
-    this.query.raw =  `${DROP_TABLE} $ifExists ${this.table}`;
+    this.query.raw =  `${DROP_TABLE} {ifExists} ${this.table}`;
   }
 
   ifExists(): DropTable {

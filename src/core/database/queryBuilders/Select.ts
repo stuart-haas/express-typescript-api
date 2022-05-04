@@ -6,7 +6,7 @@ export class Select extends QueryBuilder implements IQueryBuilder {
 
   constructor(table: string) {
     super(table);
-    this.query.raw = `${SELECT} $columns ${FROM} ${table} $where`;
+    this.query.raw = `${SELECT} {columns} ${FROM} ${table} {where}`;
   }
 
   columns(columns: string[]): Select {

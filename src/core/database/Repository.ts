@@ -33,24 +33,24 @@ export class Repository {
   async findById(id: number, columns?: string[]): Promise<any> {
     const cols = this.entityMapper.mapColumns(this.model, columns);
     const primaryKey = this.entityMapper.getPrimaryKey(this.model);
-    const query = this.queryBuilderFactory.select(this.model.table).columns(cols).where({ [primaryKey]:  id }).build();
+    const query = this.queryBuilderFactory.select(this.model.table).columns(cols).where({ [primaryKey]: +id }).build();
     return await this.database.execute(query);
   }
 
-  async create(payload: Model) {
+  async create(payload: Model): Promise<any> {
     const queryBuilder = this.queryBuilderFactory.create(this.model.table, payload).returning();
     return await this.database.execute(queryBuilder.build(), queryBuilder.values);
   }
 
-  async updateById(id: number, payload: Model) {
+  async updateById(id: number, payload: Model): Promise<any> {
     const primaryKey = this.entityMapper.getPrimaryKey(this.model);
-    const query = this.queryBuilderFactory.update(this.model.table, payload).where({ [primaryKey]:  id }).returning().build();
+    const query = this.queryBuilderFactory.update(this.model.table, payload).returning().where({ [primaryKey]: +id }).build();
     return await this.database.execute(query);
   }
 
-  async deleteById(id: number) {
+  async deleteById(id: number): Promise<any> {
     const primaryKey = this.entityMapper.getPrimaryKey(this.model);
-    const query = this.queryBuilderFactory.delete(this.model.table).where({ [primaryKey]:  id }).returning().build();
+    const query = this.queryBuilderFactory.delete(this.model.table).where({ [primaryKey]: +id }).returning().build();
     return await this.database.execute(query);
   }
 }

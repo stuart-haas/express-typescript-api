@@ -1,9 +1,12 @@
+import { container } from 'tsyringe';
 import { ALL, AND, EQUAL, RETURNING, WHERE } from '../constants';
 import { IQuery } from '../interfaces';
+import { TableMapper } from '../mappers/TableMapper';
 import { Model } from '../Model';
 
 export abstract class QueryBuilder {
 
+  protected tableMapper: TableMapper;
   protected table: string;
   protected payload: Model;
   protected query: IQuery = {
@@ -18,11 +21,12 @@ export abstract class QueryBuilder {
   constructor(table?: string, payload?: Model) {
     this.table = table;
     this.payload = payload;
+    this.tableMapper = container.resolve(TableMapper);
   }
 
   where(search?: any) {
-    const params = search && Object.keys(search).map((e => `${e} ${EQUAL} '${search[e]}'`)).join(` ${AND} `);
-    this.query.where = `${params ? WHERE : ''} ${params}`;
+    const params = search && Object.keys(search).map((e => `${e} ${EQUAL} ${search[e]}`)).join(` ${AND} `);
+    this.query.where = params ? `${WHERE} ${params}` : '';
     return this;
   }
 
@@ -36,17 +40,9 @@ export abstract class QueryBuilder {
   }
 
   private parse() {
-    Object.keys(this.query).forEach((e: string) => {
-      this.query.raw = this.query.raw.replace(`$${e}`, this.query[e] ? this.query[e] : '');
-    });
-    return this.query.raw;
-  }
-
-  private getColumnValue(name: string) {
-    if(typeof this.payload[name] === 'string') {
-      return `'${this.payload[name]}'`;
-    }
-    return this.payload[name];
+    return this.query.raw.replace(/{\w+}/g, placeholder =>
+      this.query[placeholder.substring(1, placeholder.length - 1)] || ''
+    );
   }
 
   get values() {
@@ -58,6 +54,6 @@ export abstract class QueryBuilder {
   }
 
   protected get updateParams() {
-    return Object.keys(this.payload).map((e: string) => `${e} = ${this.getColumnValue(e)}`).join(', ');
+    return Object.keys(this.payload).map((e: string) => `${e} = ${this.tableMapper.getColumnValue(this.payload, e)}`).join(', ');
   }
 }

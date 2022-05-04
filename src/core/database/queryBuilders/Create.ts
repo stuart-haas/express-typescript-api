@@ -7,6 +7,6 @@ export class Create extends QueryBuilder implements IQueryBuilder {
 
   constructor(table: string, payload: Model) {
     super(table, payload);
-    this.query.raw = `${INSERT_INTO} ${table} ${VALUES}(${this.insertParams}) $returning`;
+    this.query.raw = `${INSERT_INTO} ${table} ${VALUES}(${this.insertParams}) {returning}`;
   }
 }

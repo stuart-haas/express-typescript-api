@@ -6,6 +6,6 @@ export class Delete extends QueryBuilder implements IQueryBuilder {
   
   constructor(table: string) {
     super(table);
-    this.query.raw = `${DELETE_FROM} ${table} $where $returning`;
+    this.query.raw = `${DELETE_FROM} ${table} {where} {returning}`;
   }
 }
