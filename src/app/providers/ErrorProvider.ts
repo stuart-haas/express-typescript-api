@@ -1,7 +1,7 @@
-import { Application } from 'start/Application';
 import { autoInjectable, singleton } from 'tsyringe';
-import { IProvider } from 'core/interfaces/IProvider';
-import { Error } from 'middleware/Error';
+import { Application } from 'start';
+import { IProvider } from 'core/interfaces';
+import { Error } from 'app/middleware';
 
 @singleton()
 @autoInjectable()

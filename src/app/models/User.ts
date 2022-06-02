@@ -1,6 +1,5 @@
 import { DataTypes } from 'core/database/DataTypes';
-import { Column, Entity } from 'core/database/decorators';
-import { PrimaryKey } from 'core/database/decorators/PrimaryKey';
+import { Column, Entity, PrimaryKey } from 'core/database/decorators';
 import { Model } from 'core/database/Model';
 
 @Entity('users')

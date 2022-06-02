@@ -1,4 +1,4 @@
-import { IRoute } from 'core/interfaces/IRoute';
+import { IRoute } from 'core/interfaces';
 import { defineBody } from './Body';
 import { defineParam } from './Param';
 import { defineQuery } from './Query';

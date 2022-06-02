@@ -1,10 +1,9 @@
-import { Application } from 'start/Application';
+import { Application } from 'start';
 import { autoInjectable, InjectionToken, singleton } from 'tsyringe';
-import { IRouteProvider } from 'core/interfaces/IRouteProvider';
-import { RouteProvider } from 'core/RouteProvider';
+import { IRouteProvider, IController } from 'core/interfaces';
+import { RouteProvider } from 'core/providers';
 import { UserController } from 'components/User/UserController';
 import { IndexController } from 'components/Index/IndexController';
-import { IController } from 'core/interfaces/IController';
 
 @singleton()
 @autoInjectable()

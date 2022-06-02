@@ -1,4 +1,4 @@
-import { IApplication } from 'core/interfaces/IApplication';
+import { IApplication } from 'core/interfaces';
 import express from 'express';
 import { singleton } from 'tsyringe';
 

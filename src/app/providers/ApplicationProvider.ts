@@ -1,6 +1,6 @@
-import { IProvider } from 'core/interfaces/IProvider';
-import { Application } from 'start/Application';
 import { autoInjectable, singleton } from 'tsyringe';
+import { IProvider } from 'core/interfaces';
+import { Application } from 'start';
 
 @singleton()
 @autoInjectable()

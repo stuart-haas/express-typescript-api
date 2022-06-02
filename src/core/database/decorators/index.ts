@@ -1,2 +1,3 @@
-export { Entity } from './Entity';
-export { Column } from './Column';
+export * from './Entity';
+export * from './Column';
+export * from './PrimaryKey';

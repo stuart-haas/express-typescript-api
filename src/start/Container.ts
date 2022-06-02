@@ -1,12 +1,7 @@
 import { InjectionToken, singleton } from 'tsyringe';
-import { MiddlewareProvider } from 'providers/MiddlewareProvider';
-import { ApiRouteProvider } from 'providers/ApiRouteProvider';
-import { ApplicationProvider } from 'providers/ApplicationProvider';
-import { IProvider } from 'core/interfaces/IProvider';
-import { IContainer } from 'core/interfaces/IContainer';
-import { Container as AppContainer } from 'core/Container';
-import { ErrorProvider } from 'providers/ErrorProvider';
-import { DataProvider } from 'app/providers/DataProvider';
+import { IProvider, IContainer } from 'core/interfaces';
+import { Container as AppContainer } from 'core/providers';
+import { MiddlewareProvider, ApiRouteProvider, ApplicationProvider, ErrorProvider, DataProvider } from 'app/providers';
 
 @singleton()
 export class Container extends AppContainer implements IContainer {

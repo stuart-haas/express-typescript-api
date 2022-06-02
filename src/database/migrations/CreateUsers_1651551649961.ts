@@ -1,4 +1,4 @@
-import { Migration } from 'core/database/abstracts/Migration';
+import { Migration } from 'core/database/abstracts';
 import { IMigration } from 'core/database/interfaces';
 import { DataTypes } from 'core/database/DataTypes';
 

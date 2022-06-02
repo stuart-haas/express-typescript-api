@@ -1,18 +1,16 @@
 import { inject, injectable } from 'tsyringe';
-import { Controller, Get, JsonResponse, Post, Body, Param, Put, Delete } from 'core/http';
-import { RequireAuthentication, RequireAuthorization } from 'middleware/Authentication';
-import { IController } from 'core/interfaces/IController';
+import { Controller, Get, JsonResponse, Post, Body, Param, Put, Delete, Query } from 'core/http';
+import { IController } from 'core/interfaces';
 import { Repository } from 'core/database/Repository';
-import { UserRepository } from 'app/providers/DataProvider';
+import { RequireAuthentication, RequireAuthorization } from 'app/middleware';
 import { User } from 'app/models/User';
-import { Query } from 'core/http/Query';
 
 @injectable()
 @Controller('/users')
 @RequireAuthentication()
 export class UserController implements IController {
 
-  constructor(@inject(UserRepository) private userRepository: Repository) {}
+  constructor(@inject('UserRepository') private userRepository: Repository) {}
 
   @Get()
   @JsonResponse()

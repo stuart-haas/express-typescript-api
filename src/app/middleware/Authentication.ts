@@ -1,5 +1,5 @@
-import { ControllerMiddleware, RouteMiddleware } from 'core/http';
 import { NextFunction, Request, Response } from 'express';
+import { ControllerMiddleware, RouteMiddleware } from 'core/http';
 
 export const Authentication = (req: Request, res: Response, next: NextFunction) => {
   // console.log('Check if user is authenticated');

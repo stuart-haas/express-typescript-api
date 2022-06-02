@@ -1,6 +1,5 @@
 import { container, InjectionToken } from 'tsyringe';
-import { IProvider } from 'core/interfaces/IProvider';
-import { IContainer } from 'core/interfaces/IContainer';
+import { IProvider, IContainer } from 'core/interfaces';
 
 export abstract class Container implements IContainer {
 

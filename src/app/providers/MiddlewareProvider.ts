@@ -1,10 +1,10 @@
+import dotenv from 'dotenv';
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
-import { Application } from 'start/Application';
 import { autoInjectable, singleton } from 'tsyringe';
-import dotenv from 'dotenv';
-import { IProvider } from 'core/interfaces/IProvider';
+import { Application } from 'start';
+import { IProvider } from 'core/interfaces';
 
 dotenv.config();
 
